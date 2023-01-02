@@ -13,8 +13,8 @@ echo "Changing the current user's password ($(whoami)):"
 passwd
 
 # Add a new user:
-sudo adduser dude  # <-- Change the user name here
-sudo usermod -aG sudo dude   # <-- Change the user name here
+sudo adduser <USERNAME>  # <-- Change the user name here
+sudo usermod -aG sudo <USERNAME>   # <-- Change the user name here
 
 # Update the apt cache:
 sudo apt update
@@ -61,8 +61,8 @@ echo
 
 # Add the information into the newly added user's .bashrc file:
 echo "Adding the logging stuff to the new user's account:"
-#sudo echo "export PROMPT_COMMAND='RETRN_VAL=$?;logger -p local6.debug \"$(history 1 | sed \"s/^[ ]*[0-9]\+[ ]*//\" )\"'" >> /home/dude/.bashrc
-sudo cp ~/.zshrc /home/dude/.zshrc
+#sudo echo "export PROMPT_COMMAND='RETRN_VAL=$?;logger -p local6.debug \"$(history 1 | sed \"s/^[ ]*[0-9]\+[ ]*//\" )\"'" >> /home/<USERNAME>/.bashrc
+sudo cp ~/.zshrc /home/<USERNAME>/.zshrc
 echo "Done."
 
 echo "Need to restart the VM."
