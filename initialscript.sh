@@ -64,4 +64,4 @@ echo "Done."
 echo "Need to restart the VM."
 #sudo reboot
 # Restart the rsyslog service:
-#sudo systemctl restart rsyslog
+sudo systemctl restart rsyslog
