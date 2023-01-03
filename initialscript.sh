@@ -51,7 +51,7 @@ echo
 # Add the information into the current logged in user's .bashrc file:
 echo "Adding the logging info to the current user's account:"
 sudo cat zshrc_update.conf >> ~/.zshrc
-source ~/.zshrc
+#source ~/.zshrc
 echo "Done."
 echo
 echo
@@ -61,7 +61,7 @@ echo "Adding the logging stuff to the new user's account:"
 sudo cp ~/.zshrc /home/<USERNAME>/.zshrc
 echo "Done."
 
-echo "Need to restart the VM."
+echo "Please restart the VM."
 #sudo reboot
 # Restart the rsyslog service:
 sudo systemctl restart rsyslog
