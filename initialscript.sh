@@ -13,7 +13,7 @@ echo "Changing the current user's password ($(whoami)):"
 passwd
 
 # Add a new user:
-sudo adduser <USERNAME> --shell zsh  # <-- Change the user name here
+sudo adduser <USERNAME> --shell /usr/bin/zsh  # <-- Change the user name here
 #sudo usermod -aG sudo <USERNAME>  # <-- Change the user name here
 sudo adduser <USERNAME> sudo # <-- Change the user name here
 
