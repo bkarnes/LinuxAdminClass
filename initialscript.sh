@@ -52,7 +52,7 @@ sudo cp bash.conf /etc/rsyslog.d/
 echo
 echo
 
-# Add the information into the current logged in user's .bashrc file:
+# Add the information into the current logged in user's .zshrc file:
 echo "Adding the logging info to the current user's account:"
 sudo cat zshrc_update.conf >> ~/.zshrc
 #source ~/.zshrc
@@ -60,7 +60,7 @@ echo "Done."
 echo
 echo
 
-# Add the information into the newly added user's .bashrc file:
+# Add the information into the newly added user's .zshrc file:
 echo "Adding the logging stuff to the new user's account:"
 sudo cp ~/.zshrc /home/<USERNAME>/.zshrc
 echo "Done."
