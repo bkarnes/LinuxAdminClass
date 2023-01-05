@@ -13,8 +13,9 @@ echo "Changing the current user's password ($(whoami)):"
 passwd
 
 # Add a new user:
-sudo adduser <USERNAME>  # <-- Change the user name here
-sudo usermod -aG sudo <USERNAME>  # <-- Change the user name here
+sudo adduser <USERNAME> --shell zsh  # <-- Change the user name here
+#sudo usermod -aG sudo <USERNAME>  # <-- Change the user name here
+sudo adduser <USERNAME> sudo # <-- Change the user name here
 
 # Update the apt cache:
 sudo apt update
@@ -29,7 +30,7 @@ if [ ! -d ~/scripts ]; then
 	mkdir ~/scripts
 fi
 
-#echo -e "#! /bin/bash\n\n\nsudo apt update\nsudo apt upgrade\nsudo apt dist-upgrade\nsudo apt auto-remove" > ~/scripts/updatescript.sh && chmod u+x ~/scripts/updatescript.sh
+echo -e "#! /bin/bash\n\n\nsudo apt update\nsudo apt upgrade\nsudo apt dist-upgrade\nsudo apt auto-remove" > ~/scripts/updatescript.sh && chmod u+x ~/scripts/updatescript.sh
 echo -e "#! /bin/bash\n\n\nwhoami" > ~/scripts/whoamiscript.sh && chmod u+x ~/scripts/whoamiscript.sh
 echo
 echo
@@ -38,7 +39,7 @@ echo
 # NOTE: THIS CAN TAKE A LONG TIME TO COMPLETE!
 #./scripts/updatescript.sh
 echo "Running the script."
-~/scripts/whoamiscript.sh
+./scripts/whoamiscript.sh
 echo
 echo
 
