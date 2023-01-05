@@ -24,13 +24,13 @@ sudo apt install -y rsyslog terminator
 
 # Let's add the update script to the scripts directory:
 # First, test to make sure the directory isn't already there:
-if [ ! -d scripts ]; then
+if [ ! -d ~/scripts ]; then
 	#mkdir ~/scripts
-	mkdir scripts
+	mkdir ~/scripts
 fi
 
-#echo -e "#! /bin/bash\n\n\nsudo apt update\nsudo apt upgrade\nsudo apt dist-upgrade\nsudo apt auto-remove" > scripts/updatescript.sh && chmod u+x scripts/updatescript.sh
-echo -e "#! /bin/bash\n\n\nwhoami" > scripts/whoamiscript.sh && chmod u+x scripts/whoamiscript.sh
+#echo -e "#! /bin/bash\n\n\nsudo apt update\nsudo apt upgrade\nsudo apt dist-upgrade\nsudo apt auto-remove" > ~/scripts/updatescript.sh && chmod u+x ~/scripts/updatescript.sh
+echo -e "#! /bin/bash\n\n\nwhoami" > ~/scripts/whoamiscript.sh && chmod u+x ~/scripts/whoamiscript.sh
 echo
 echo
 
@@ -38,7 +38,7 @@ echo
 # NOTE: THIS CAN TAKE A LONG TIME TO COMPLETE!
 #./scripts/updatescript.sh
 echo "Running the script."
-./scripts/whoamiscript.sh
+~/scripts/whoamiscript.sh
 echo
 echo
 
@@ -61,8 +61,9 @@ echo "Adding the logging stuff to the new user's account:"
 sudo cp ~/.zshrc /home/<USERNAME>/.zshrc
 echo "Done."
 
-echo "Please restart the VM."
-#sudo reboot
-source ~/.zshrc
 # Restart the rsyslog service:
 sudo systemctl restart rsyslog
+
+# Finished.
+echo "Finished setting up the VM for the first time. Please restart the VM."
+#sudo reboot
