@@ -1,8 +1,8 @@
 #! /bin/bash
 
 #################################################################################
-## initialscript.sh
-## Usage: ./initialscript.sh
+## setup_vm.sh
+## Usage: ./setup_vm.sh
 ## Requirements:
 ##    None
 ##
@@ -15,23 +15,32 @@
 echo "Changing the current user's password ($(whoami)):"
 passwd
 
-# Add a new user:
-sudo adduser <USERNAME> --shell /usr/bin/zsh  # <-- Change the user name here
-#sudo usermod -aG sudo <USERNAME>  # <-- Change the user name here
-sudo adduser <USERNAME> sudo # <-- Change the user name here
-
 # Update the apt cache:
 sudo apt update
 
 # Install rsyslog:
-sudo apt install -y rsyslog terminator
+sudo apt install -y rsyslog terminator cherrytree
 
-# Let's add the update script to the scripts directory:
-# First, test to make sure the directory isn't already there:
+#################################################################################
+# Let's make some default directories:
+# First, the scripts directory.  Test to make sure the directory isn't already there:
 if [ ! -d ~/scripts ]; then
-	#mkdir ~/scripts
 	mkdir ~/scripts
 fi
+
+# Next, the Projects directory.  Test to make sure the directory isn't already there:
+if [ ! -d ~/Projects ]; then
+	mkdir ~/Projects
+fi
+
+# Next, add to the Downloads directory:
+mkdir -p Downloads/Software
+
+# Next, the tools directory.  Test to make sure the directory isn't already there:
+if [ ! -d ~/tools ]; then
+	mkdir ~/tools
+fi
+#################################################################################
 
 echo -e "#! /bin/bash\n\n\nsudo apt update\nsudo apt upgrade\nsudo apt dist-upgrade\nsudo apt auto-remove" > ~/scripts/updatescript.sh && chmod u+x ~/scripts/updatescript.sh
 echo -e "#! /bin/bash\n\n\nwhoami" > ~/scripts/whoamiscript.sh && chmod u+x ~/scripts/whoamiscript.sh
@@ -60,10 +69,15 @@ echo "Done."
 echo
 echo
 
-# Add the information into the newly added user's .zshrc file:
-echo "Adding the logging stuff to the new user's account:"
-sudo cp ~/.zshrc /home/<USERNAME>/.zshrc
+# Add the config information into the /etc/skel .zshrc and .bashrc files:
+echo "Updating the /etc/skel files:"
+sudo cat zshrc_updates.conf >> /etc/skel/.zshrc
+sudo cat bashrc_updates.conf >> /etc/skel/.bashrc
 echo "Done."
+
+# Add a new secondary user:
+sudo adduser <USERNAME> --shell /usr/bin/zsh  # <-- Change the user name here
+sudo adduser <USERNAME> sudo # <-- Change the user name here
 
 # Restart the rsyslog service:
 sudo systemctl restart rsyslog
