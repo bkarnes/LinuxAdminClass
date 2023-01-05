@@ -6,6 +6,9 @@
 ## Requirements:
 ##    None
 ##
+## TODO:
+## Set up the logging info for .bashrc as well as .zshrc
+## Maybe update the /etc/skel files?
 #################################################################################
 
 # Change the kali user password:
