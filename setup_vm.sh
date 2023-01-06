@@ -34,7 +34,7 @@ if [ ! -d ~/Projects ]; then
 fi
 
 # Next, add to the Downloads directory:
-mkdir -p Downloads/Software
+mkdir -p ~/Downloads/Software
 
 # Next, the tools directory.  Test to make sure the directory isn't already there:
 if [ ! -d ~/tools ]; then
@@ -51,18 +51,20 @@ echo
 # NOTE: THIS CAN TAKE A LONG TIME TO COMPLETE!
 #./scripts/updatescript.sh
 echo "Running the script."
-./scripts/whoamiscript.sh
+~/scripts/whoamiscript.sh
 echo
 echo
 
 # Set up the logging of our commands:
 echo "Adding the logging info to the /etc/rsyslog.d directory:"
+echo "Working Directory: $(pwd)"
 sudo cp bash.conf /etc/rsyslog.d/
 echo
 echo
 
-# Add the information into the current logged in user's .zshrc file:
+# Add the logging information into the current logged in user's .zshrc file:
 echo "Adding the logging info to the current user's account:"
+echo "Working Directory: $(pwd)"
 sudo cat zshrc_update.conf >> ~/.zshrc
 #source ~/.zshrc
 echo "Done."
@@ -71,6 +73,7 @@ echo
 
 # Add the config information into the /etc/skel .zshrc and .bashrc files:
 echo "Updating the /etc/skel files:"
+echo "Working Directory: $(pwd)"
 sudo cat zshrc_updates.conf >> /etc/skel/.zshrc
 sudo cat bashrc_updates.conf >> /etc/skel/.bashrc
 echo "Done."
