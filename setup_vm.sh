@@ -74,8 +74,8 @@ echo
 # Add the config information into the /etc/skel .zshrc and .bashrc files:
 echo "Updating the /etc/skel files:"
 echo "Working Directory: $(pwd)"
-sudo cat zshrc_updates.conf >> /etc/skel/.zshrc
-sudo cat bashrc_updates.conf >> /etc/skel/.bashrc
+sudo cp configs/zshrc_updates.dist /etc/skel/.zshrc
+sudo cp configs/bashrc_updates.dist /etc/skel/.bashrc
 echo "Done."
 
 # Add a new secondary user:
