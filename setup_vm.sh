@@ -28,11 +28,6 @@ if [ ! -d ~/scripts ]; then
 	mkdir ~/scripts
 fi
 
-# Next, the Projects directory.  Test to make sure the directory isn't already there:
-if [ ! -d ~/Projects ]; then
-	mkdir ~/Projects
-fi
-
 # Next, add to the Downloads directory:
 mkdir -p ~/Downloads/Software
 
@@ -58,14 +53,14 @@ echo
 # Set up the logging of our commands:
 echo "Adding the logging info to the /etc/rsyslog.d directory:"
 echo "Working Directory: $(pwd)"
-sudo cp bash.conf /etc/rsyslog.d/
+sudo cp configs/bash.conf /etc/rsyslog.d/
 echo
 echo
 
 # Add the logging information into the current logged in user's .zshrc file:
 echo "Adding the logging info to the current user's account:"
 echo "Working Directory: $(pwd)"
-sudo cat zshrc_update.conf >> ~/.zshrc
+sudo cat configs/zshrc_update.conf >> ~/.zshrc
 #source ~/.zshrc
 echo "Done."
 echo
@@ -78,12 +73,25 @@ sudo cp configs/zshrc_updates.dist /etc/skel/.zshrc
 sudo cp configs/bashrc_updates.dist /etc/skel/.bashrc
 echo "Done."
 
+# Restart the rsyslog service:
+sudo systemctl restart rsyslog
+
 # Add a new secondary user:
 sudo adduser <USERNAME> --shell /usr/bin/zsh  # <-- Change the user name here
 sudo adduser <USERNAME> sudo # <-- Change the user name here
 
-# Restart the rsyslog service:
-sudo systemctl restart rsyslog
+# Let's make some default directories for the new user:
+# First, the scripts directory.  Test to make sure the directory isn't already there:
+sudo mkdir /home/<USERNAME>/scripts
+
+# Next, the Projects directory.  Test to make sure the directory isn't already there:
+sudo mkdir /home/<USERNAME>/Projects
+
+# Next, add to the Downloads directory:
+sudo mkdir -p /home/<USERNAME>/Downloads/Software
+
+# Next, the tools directory.  Test to make sure the directory isn't already there:
+sudo mkdir /home/<USERNAME>/tools
 
 # Finished.
 echo "Finished setting up the VM for the first time. Please restart the VM."
