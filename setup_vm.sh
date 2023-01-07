@@ -6,14 +6,12 @@
 ## Requirements:
 ##    None
 ##
-## TODO:
-## Set up the logging info for .bashrc as well as .zshrc
-## Maybe update the /etc/skel files?
 #################################################################################
 
 # Change the kali user password:
-echo "Changing the current user's password ($(whoami)):"
-passwd
+# Commenting this out for now, will show how to change password manually.
+#echo "Changing the current user's password ($(whoami)):"
+#passwd
 
 # Update the apt cache:
 sudo apt update
