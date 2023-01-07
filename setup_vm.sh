@@ -77,15 +77,15 @@ sudo adduser <USERNAME> sudo # <-- Change the user name here
 # Let's make some default directories for the new user:
 # First, the scripts directory.  Test to make sure the directory isn't already there:
 sudo mkdir /home/<USERNAME>/scripts
+sudo chown <USERNAME>:<USERNAME> /home/<USERNAME>/scripts
 
 # Next, the Projects directory.  Test to make sure the directory isn't already there:
 sudo mkdir /home/<USERNAME>/Projects
-
-# Next, add to the Downloads directory:
-sudo mkdir -p /home/<USERNAME>/Downloads/Software
+sudo chown <USERNAME>:<USERNAME> /home/<USERNAME>/Projects
 
 # Next, the tools directory.  Test to make sure the directory isn't already there:
 sudo mkdir /home/<USERNAME>/tools
+sudo chown <USERNAME>:<USERNAME> /home/<USERNAME>/tools
 
 # Finished.
 echo "Finished setting up the VM for the first time. Please restart the VM."
