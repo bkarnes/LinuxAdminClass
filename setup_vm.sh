@@ -21,21 +21,15 @@ sudo apt update
 # Install rsyslog:
 sudo apt install -y rsyslog terminator cherrytree
 
-#################################################################################
 # Let's make some default directories:
 # First, the scripts directory.  Test to make sure the directory isn't already there:
-if [ ! -d ~/scripts ]; then
-	mkdir ~/scripts
-fi
+mkdir ~/scripts
 
 # Next, add to the Downloads directory:
 mkdir -p ~/Downloads/Software
 
 # Next, the tools directory.  Test to make sure the directory isn't already there:
-if [ ! -d ~/tools ]; then
-	mkdir ~/tools
-fi
-#################################################################################
+mkdir ~/tools
 
 echo -e "#! /bin/bash\n\n\nsudo apt update\nsudo apt upgrade\nsudo apt dist-upgrade\nsudo apt auto-remove" > ~/scripts/updatescript.sh && chmod u+x ~/scripts/updatescript.sh
 echo -e "#! /bin/bash\n\n\nwhoami" > ~/scripts/whoamiscript.sh && chmod u+x ~/scripts/whoamiscript.sh
