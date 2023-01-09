@@ -17,7 +17,7 @@
 sudo apt update
 
 # Install rsyslog:
-sudo apt install -y rsyslog terminator cherrytree
+sudo apt install -y rsyslog terminator cherrytree tmux screen
 
 # Let's make some default directories:
 # First, the scripts directory.  Test to make sure the directory isn't already there:
