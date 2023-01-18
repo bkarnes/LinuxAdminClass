@@ -36,7 +36,7 @@ echo
 
 # Now, we can update the VM:
 # NOTE: THIS CAN TAKE A LONG TIME TO COMPLETE!
-#./scripts/updatescript.sh
+#~/scripts/updatescript.sh
 echo "Running the script."
 ~/scripts/whoamiscript.sh
 echo
