@@ -1,5 +1,3 @@
-#! /bin/bash
-
 #################################################################################
 ## setup_vm.sh
 ## Usage: ./setup_vm.sh
@@ -17,18 +15,39 @@
 sudo apt update
 
 # Install rsyslog:
-sudo apt install -y rsyslog terminator cherrytree tmux screen
+sudo apt install -y rsyslog terminator cherrytree tmux screen golang libpcap-dev massdns flatpak python3-venv
 
 # Let's make some default directories:
 # First, the scripts directory.  Test to make sure the directory isn't already there:
-mkdir ~/scripts
+#mkdir ~/scripts
+if [ -d "~/scripts" ]; then
+    echo "~/scripts Directory exists. Skipping."
+else
+    echo "Creating the ~/scripts directory."
+    mkdir ~/scripts
+fi
 
 # Next, add to the Downloads directory:
-mkdir -p ~/Downloads/Software
+#mkdir -p ~/Downloads/Software
+
+if [ -d "~/Downloads/Software" ]; then
+    echo "~/Downloads/Software Directory exists. Skipping."
+else
+    echo "Creating the ~/Downloads/Software directory."
+    mkdir -p ~/Downloads/Software
+fi
 
 # Next, the tools directory.  Test to make sure the directory isn't already there:
-mkdir ~/tools
+#mkdir ~/tools
 
+if [ -d "~/tools" ]; then
+    echo "~/tools Directory exists. Skipping."
+else
+    echo "Creating the ~/tools directory."
+    mkdir ~/tools
+fi
+
+# Add the update script to the ~/scripts directory:
 echo -e "#! /bin/bash\n\n\nsudo apt update\nsudo apt upgrade\nsudo apt dist-upgrade\nsudo apt auto-remove" > ~/scripts/updatescript.sh && chmod u+x ~/scripts/updatescript.sh
 echo -e "#! /bin/bash\n\n\nwhoami" > ~/scripts/whoamiscript.sh && chmod u+x ~/scripts/whoamiscript.sh
 echo
@@ -41,6 +60,10 @@ echo "Running the script."
 ~/scripts/whoamiscript.sh
 echo
 echo
+
+################################################################################
+## Set up CLI Logging for the system:
+################################################################################
 
 # Set up the logging of our commands:
 echo "Adding the logging info to the /etc/rsyslog.d directory:"
@@ -67,6 +90,26 @@ echo "Done."
 
 # Restart the rsyslog service:
 sudo systemctl restart rsyslog
+
+################################################################################
+## Set up Docker:
+################################################################################
+
+# Add Docker's official GPG key:
+sudo apt-get update
+sudo apt-get install ca-certificates curl
+sudo install -m 0755 -d /etc/apt/keyrings
+sudo curl -fsSL https://download.docker.com/linux/debian/gpg -o /etc/apt/keyrings/docker.asc
+sudo chmod a+r /etc/apt/keyrings/docker.asc
+
+# Add the repository to Apt sources:
+echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/debian bullseye stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+sudo apt-get update
+sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose docker-compose-plugin
+
+################################################################################
+## Set up a new secondary user:
+################################################################################
 
 # Add a new secondary user:
 sudo adduser <USERNAME> --shell /usr/bin/zsh  # <-- Change the user name here

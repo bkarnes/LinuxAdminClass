@@ -156,9 +156,15 @@ if ! shopt -oq posix; then
 fi
 
 
-#################################################################################
-## Set up logging of commands into /var/log/commands.log file;
-#################################################################################
+##################################
+## Set up golang and CLI logging:
+##################################
+
+# Add GoLang to the path:
+# From: https://rafaelhart.com/2020/03/installing-golang-on-kali-linux/ by Rafe Hart
+export GOROOT=/usr/lib/go
+export GOPATH=$HOME/go
+export PATH=$GOPATH/bin:$GOROOT/bin:$PATH
 
 # Enable CLI Logging:
 export PROMPT_COMMAND='RETRN_VAL=$?;logger -p local6.debug "$(history 1 | sed "s/^[ ]*[0-9]\+[ ]*//" )"'
