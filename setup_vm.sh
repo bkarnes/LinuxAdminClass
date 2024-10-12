@@ -53,8 +53,8 @@ else
 fi
 
 # Add the update script to the ~/scripts directory:
-echo -e "#! /bin/bash\n\n\nsudo apt update\nsudo apt upgrade\nsudo apt dist-upgrade\nsudo apt auto-remove" > ~/scripts/updatescript.sh && chmod u+x ~/scripts/updatescript.sh
-echo -e "#! /bin/bash\n\n\nwhoami" > ~/scripts/whoamiscript.sh && chmod u+x ~/scripts/whoamiscript.sh
+echo "#! /bin/bash\n\n\nsudo apt update\nsudo apt upgrade\nsudo apt dist-upgrade\nsudo apt auto-remove" > ~/scripts/updatescript.sh && chmod u+x ~/scripts/updatescript.sh
+echo "#! /bin/bash\n\n\nwhoami" > ~/scripts/whoamiscript.sh && chmod u+x ~/scripts/whoamiscript.sh
 echo
 echo
 
@@ -116,22 +116,25 @@ sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin 
 ## Set up a new secondary user:
 ################################################################################
 
+echo "Setting up the secondary user:"
+echo $1
+
 # Add a new secondary user:
-sudo adduser <USERNAME> --shell /usr/bin/zsh  # <-- Change the user name here
-sudo adduser <USERNAME> sudo # <-- Change the user name here
+sudo adduser $(echo $1)  # <-- Change the user name here
+sudo adduser $(echo $1) sudo # <-- Change the user name here
 
 # Let's make some default directories for the new user:
 # First, the scripts directory.  Test to make sure the directory isn't already there:
-sudo mkdir /home/<USERNAME>/scripts
-sudo chown <USERNAME>:<USERNAME> /home/<USERNAME>/scripts
+sudo mkdir /home/$(echo $1)/scripts
+sudo chown $(echo $1):$(echo $1) /home/$(echo $1)/scripts
 
 # Next, the Projects directory.  Test to make sure the directory isn't already there:
-sudo mkdir /home/<USERNAME>/Projects
-sudo chown <USERNAME>:<USERNAME> /home/<USERNAME>/Projects
+sudo mkdir /home/$(echo $1)/Projects
+sudo chown $(echo $1):$(echo $1) /home/$(echo $1)/Projects
 
 # Next, the tools directory.  Test to make sure the directory isn't already there:
-sudo mkdir /home/<USERNAME>/tools
-sudo chown <USERNAME>:<USERNAME> /home/<USERNAME>/tools
+sudo mkdir /home/$(echo $1)/tools
+sudo chown $(echo $1):$(echo $1) /home/$(echo $1)/tools
 
 # Finished.
 echo "Finished setting up the VM for the first time. Please restart the VM."
