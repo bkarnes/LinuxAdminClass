@@ -50,9 +50,13 @@ echo "
 #############################################################
 
 #############################################################
-## Inital Set up:
+## Setting up CLI Logging:
 #############################################################
 function cli-logging(){
+
+    # Change the kali user's shell to BASH
+    chsh -s /bin/bash
+
     # Update the apt cache:
     echo "Updating the APT Cache:"
     sudo apt update
@@ -91,7 +95,7 @@ function cli-logging(){
     sudo systemctl restart rsyslog
     
     # Finished.
-    echo "Finished setting up the CLI Logging. For best results, please Quit the script and restart the VM."
+    echo "Finished setting up the CLI Logging. For best results, please restart the VM."
 }
 #############################################################
 
@@ -99,8 +103,8 @@ function cli-logging(){
 ## Install extra tools:
 ##################################################################################
 function extra-tools(){
-    # Installing other tools:
-    echo "Installing some cool tools:"
+    # Install rsyslog and other tools:
+    echo "Installing rsyslog and some tools:"
     sudo apt update
     sudo apt install -y terminator cherrytree tmux screen golang libpcap-dev massdns flatpak python3-venv
     echo "Done."
@@ -125,6 +129,12 @@ function install-docker(){
     
     # Install docker and docker-compose components:
     sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose docker-compose-plugin
+
+    # Set the current user to run docker with root previlages:
+    echo "Adding the current user to the docker group."
+    sudo adduser $USER docker
+    echo "$USER has been added to the docker group.  You will need to log out and back in again or restart the VM."
+    #sudo reboot
 }
 
 ##################################################################################
@@ -191,27 +201,43 @@ function add-secondary-user(){
     echo "Setting up a new user:"
     echo "What is the New User's name?"
     read newuser
+
     # Add a new secondary user:
     sudo adduser $newuser  # <-- Change the user name here
     sudo adduser $newuser sudo # <-- Change the user name here
 
     # Let's make some default directories for the new user:
-    # First, the scripts directory.  Test to make sure the directory isn't already there:
-    sudo mkdir /home/${newuser}/scripts
-    #sudo chown ${newuser}:${newuser} /home/${newuser}/scripts
 
+    # First, the scripts directory.  Test to make sure the directory isn't already there:
+    if [ -d "/home/${newuser}/scripts" ]; then
+        echo "/home/${newuser}/scripts Directory exists. Skipping."
+    else
+        echo "Creating the /home/${newuser}/scripts directory."
+        sudo mkdir /home/${newuser}/scripts
+    fi
+    
     # Add the update script to the new user's  ~/scripts directory:
     echo -e "#! /bin/bash\n\n\nsudo apt update\nsudo apt upgrade\nsudo apt dist-upgrade\nsudo apt auto-remove" > /home/${newuser}/scripts/update.sh && chmod u+x /home/${newuser}/scripts/update.sh
     echo -e "#! /bin/bash\n\n\nwhoami" > /home/${newuser}/scripts/whoamiscript.sh && chmod u+x /home/${newuser}/scripts/whoamiscript.sh
 
-    # Next, the Projects directory.  Test to make sure the directory isn't already there:
-    sudo mkdir /home/${newuser}/Projects
-    #sudo chown ${newuser}:${newuser} /home/${newuser}/Projects
+    # Next, add to the Projects directory.  Test to make sure the directory isn't already there:
+    if [ -d "/home/${newuser}/Projects" ]; then
+        echo "/home/${newuser}/Projects Directory exists. Skipping."
+    else
+        echo "Creating the /home/${newuser}/Projects directory."
+        sudo mkdir /home/${newuser}/Projects
+    fi
 
     # Next, the tools directory.  Test to make sure the directory isn't already there:
-    sudo mkdir /home/${newuser}/tools
+    if [ -d "/home/${newuser}/tools" ]; then
+        echo "/home/${newuser}/tools Directory exists. Skipping."
+    else
+        echo "Creating the /home/${newuser}/tools directory."
+        sudo mkdir /home/${newuser}/tools
+    fi
 
     sudo chown -R ${newuser}:${newuser} /home/${newuser}/*
+
 }
 
 ##################################################################################
@@ -226,36 +252,43 @@ function blackhat-bash(){
 ##################################################################################
 function securewv-15-ctf(){
     #echo "This is where the CTF setup will go."
-    echo "Pulling the zip files from the server."
-    cd ~/Projects/
-    #mkdir 
-    wget https://ethicalhacker.quest/sv15-ctf/SecureWV-CTF.zip
-    unzip SecureWV-CTF.zip
-    cd SecureWV-CTF
-    echo "Finished setting up the CTF for SecureWV 15."
-}
-
-
-##################################################################################
-## Install Netbird client:
-##################################################################################
-function install-netbird(){
-    echo "This is where we install netbird client."
-    #curl -fsSL https://pkgs.netbird.io/install.sh | sh
     
-    # Add the repository:
-    sudo apt-get update
-    sudo apt install ca-certificates curl gnupg -y
-    curl -sSL https://pkgs.netbird.io/debian/public.key | sudo gpg --dearmor --output /usr/share/keyrings/netbird-archive-keyring.gpg
-    echo 'deb [signed-by=/usr/share/keyrings/netbird-archive-keyring.gpg] https://pkgs.netbird.io/debian stable main' | sudo tee /etc/apt/sources.list.d/netbird.list
+    # Pull the JuiceShop Docer image down:
+    echo "Pulling the latest JuiceShop Docker image."
+    docker pull bkimminich/juice-shop
+    echo "Done."
+    echo
+    
+    # Pull the zip file from my server."
+    echo "Pulling the zip file from the server."
+    if [ -e ~/Projects/SecureWV-CTF.zip ]; then
+        echo "Zip file has already been pulled down. Skipping."
+    else
+        echo "Zip file does not exist, pulling it down."
+        cd ~/Projects/
+        wget https://ethicalhacker.quest/sv15-ctf/SecureWV-CTF.zip
+    fi
+    
+    # Do we need to unzip the file?
+    if [ -d "SecureWV-CTF" ]; then
+        echo "the SecureWV-CTF directory exists. Skipping."
+    else
+        echo "Unzipping the file."
+        # Ask for the password:
+        echo "What is the password for the zip file?"
+        read mypass
 
-    # Update first:
-    sudo apt-get update
+        # unzip file
+        unzip -P $mypass SecureWV-CTF.zip
+    
+        # Change to the Directory and move things around.
+        cd ~/Projects/SecureWV-CTF
+        cp CTF_bash_aliases ~/.bash_aliases
+        source ~/.bash_aliases
+    fi
+    
+    echo "Finished setting up the CTF for SecureWV 15."
 
-    # Install the Clientl
-    sudo apt-get install netbird netbird-ui
-
-    echo "Done.  Netbird is installed."
 }
 
 #############################################################
@@ -269,16 +302,15 @@ do
     echo " Today is: $timeofday"
     echo " What can I do for you today?"
     echo
-    echo " 1) Setup CLI logging"
-    echo " 2) Install tools"
-    echo " 3) Install Docker"
-    echo " 4) Setup Directories"
-    echo " 5) Update VM"
-    #echo " 6) Who am I?"
-    echo " 6) Add a user"
-    echo " 7) Install netbird client."
+    echo " 1) Setup CLI logging.  Will require a reboot."
+    echo " 2) Update VM.  Will require a reboot."
+    echo " 3) Install tools"
+    echo " 4) Install Docker.  Will require a reboot."
+    echo " 5) Install netbird client."
+    echo " 6) Set up SecureWV 15 CTF"
+    echo " 7) Setup Directories"
     echo " 8) Set up Black Hat Bash docker images"
-    echo " 9) Set up SecureWV 15 CTF"
+    echo " 9) Add a user"
     echo " (Q)uit"
     read choice
     
@@ -287,37 +319,37 @@ do
     	    cli-logging
     	    ;;
     	[2])
-    	    extra-tools
+    	    update-vm
     	    ;;
 	[3])
-            install-docker
+            extra-tools
             ;;
 	[4])
-            install-directories
+            install-docker
             ;;
 	[5])
-            update-vm
+            install-netbird
             ;;
 	[6])
-            add-secondary-user
+            securewv-15-ctf
             ;;
 	[7])
-            install-netbird
+            install-directories
             ;;
 	[8])
             blackhat-bash
             ;;
 	[9])
-            securewv-15-ctf
+            add-secondary-user
             ;;
     	[Qq])
-    		echo
-    		echo "Have a nice day."
-    		echo 
-    		exit;;
+  	    echo
+    	    echo "Have a nice day."
+    	    echo 
+    	    exit;;
     	*)
-    		echo "Incorrect Choice.  Please try again."
-    		;;
+    	    echo "Incorrect Choice.  Please try again."
+    	    ;;
     esac
     echo
     echo -e "Enter return to continue...."
