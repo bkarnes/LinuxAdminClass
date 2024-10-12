@@ -225,7 +225,37 @@ function blackhat-bash(){
 ## Set up SecureWV 15 CTF:
 ##################################################################################
 function securewv-15-ctf(){
-    echo "This is where the CTF setup will go."
+    #echo "This is where the CTF setup will go."
+    echo "Pulling the zip files from the server."
+    cd ~/Projects/
+    #mkdir 
+    wget https://ethicalhacker.quest/sv15-ctf/SecureWV-CTF.zip
+    unzip SecureWV-CTF.zip
+    cd SecureWV-CTF
+    echo "Finished setting up the CTF for SecureWV 15."
+}
+
+
+##################################################################################
+## Install Netbird client:
+##################################################################################
+function install-netbird(){
+    echo "This is where we install netbird client."
+    #curl -fsSL https://pkgs.netbird.io/install.sh | sh
+    
+    # Add the repository:
+    sudo apt-get update
+    sudo apt install ca-certificates curl gnupg -y
+    curl -sSL https://pkgs.netbird.io/debian/public.key | sudo gpg --dearmor --output /usr/share/keyrings/netbird-archive-keyring.gpg
+    echo 'deb [signed-by=/usr/share/keyrings/netbird-archive-keyring.gpg] https://pkgs.netbird.io/debian stable main' | sudo tee /etc/apt/sources.list.d/netbird.list
+
+    # Update first:
+    sudo apt-get update
+
+    # Install the Clientl
+    sudo apt-get install netbird netbird-ui
+
+    echo "Done.  Netbird is installed."
 }
 
 #############################################################
@@ -244,8 +274,9 @@ do
     echo " 3) Install Docker"
     echo " 4) Setup Directories"
     echo " 5) Update VM"
-    echo " 6) Who am I?"
-    echo " 7) Add a user"
+    #echo " 6) Who am I?"
+    echo " 6) Add a user"
+    echo " 7) Install netbird client."
     echo " 8) Set up Black Hat Bash docker images"
     echo " 9) Set up SecureWV 15 CTF"
     echo " (Q)uit"
@@ -253,30 +284,30 @@ do
     
     case $choice in
     	[1])
-    		cli-logging
-    		;;
+    	    cli-logging
+    	    ;;
     	[2])
-    		extra-tools
-    		;;
-	    [3])
+    	    extra-tools
+    	    ;;
+	[3])
             install-docker
             ;;
-	    [4])
+	[4])
             install-directories
             ;;
-	    [5])
+	[5])
             update-vm
             ;;
-	    [6])
-            who-am-i
-            ;;
-	    [7])
+	[6])
             add-secondary-user
             ;;
-	    [8])
+	[7])
+            install-netbird
+            ;;
+	[8])
             blackhat-bash
             ;;
-	    [9])
+	[9])
             securewv-15-ctf
             ;;
     	[Qq])
