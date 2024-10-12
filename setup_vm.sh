@@ -1,6 +1,7 @@
 #################################################################################
 ## setup_vm.sh
-## Usage: ./setup_vm.sh
+## Usage: ./setup_vm.sh <new username>
+## Example: ./setup_vm.sh dude
 ## Requirements:
 ##    None
 ##
