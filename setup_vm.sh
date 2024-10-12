@@ -12,10 +12,15 @@
 #passwd
 
 # Update the apt cache:
+echo "Updating the APT Cache:"
 sudo apt update
+echo "Done."
+echo
 
-# Install rsyslog:
+# Install rsyslog and other tools:
+echo "Installing some tools:"
 sudo apt install -y rsyslog terminator cherrytree tmux screen golang libpcap-dev massdns flatpak python3-venv
+echo "Done."
 
 # Let's make some default directories:
 # First, the scripts directory.  Test to make sure the directory isn't already there:
