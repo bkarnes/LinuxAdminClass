@@ -157,8 +157,8 @@ function install-directories(){
     fi
     
     # Add the update script to the ~/scripts directory:
-    echo "#! /bin/bash\n\n\nsudo apt update\nsudo apt upgrade\nsudo apt dist-upgrade\nsudo apt auto-remove" > ~/scripts/updatescript.sh && chmod u+x ~/scripts/update.sh
-    echo "#! /bin/bash\n\n\nwhoami" > ~/scripts/whoamiscript.sh && chmod u+x ~/scripts/whoamiscript.sh
+    echo -e "#! /bin/bash\n\n\nsudo apt update\nsudo apt upgrade\nsudo apt dist-upgrade\nsudo apt auto-remove" > ~/scripts/update.sh && chmod u+x ~/scripts/update.sh
+    echo -e "#! /bin/bash\n\n\nwhoami" > ~/scripts/whoamiscript.sh && chmod u+x ~/scripts/whoamiscript.sh
     echo
     echo
     
@@ -201,8 +201,8 @@ function add-secondary-user(){
     #sudo chown ${newuser}:${newuser} /home/${newuser}/scripts
 
     # Add the update script to the new user's  ~/scripts directory:
-    echo "#! /bin/bash\n\n\nsudo apt update\nsudo apt upgrade\nsudo apt dist-upgrade\nsudo apt auto-remove" > /home/${newuser}/scripts/update.sh && chmod u+x /home/${newuser}/scripts/update.sh
-    echo "#! /bin/bash\n\n\nwhoami" > /home/${newuser}/scripts/whoamiscript.sh && chmod u+x /home/${newuser}/scripts/whoamiscript.sh
+    echo -e "#! /bin/bash\n\n\nsudo apt update\nsudo apt upgrade\nsudo apt dist-upgrade\nsudo apt auto-remove" > /home/${newuser}/scripts/update.sh && chmod u+x /home/${newuser}/scripts/update.sh
+    echo -e "#! /bin/bash\n\n\nwhoami" > /home/${newuser}/scripts/whoamiscript.sh && chmod u+x /home/${newuser}/scripts/whoamiscript.sh
 
     # Next, the Projects directory.  Test to make sure the directory isn't already there:
     sudo mkdir /home/${newuser}/Projects
