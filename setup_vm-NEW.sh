@@ -65,7 +65,7 @@ function cli-logging(){
 
     # Install rsyslog and other tools:
     echo "Installing rsyslog and some tools:"
-    sudo apt install -y rsyslog
+    sudo apt install -y rsyslog golang
     echo "Done."
     
     # Set up the logging of our commands:
@@ -79,6 +79,7 @@ function cli-logging(){
     echo "Adding the logging info to the current user's account:"
     echo "Working Directory: $(pwd)"
     sudo cat configs/zshrc_update.conf >> ~/.zshrc
+    sudo cat configs/bashrc_update.conf >> ~/.bashrc
     #source ~/.zshrc
     echo "Done."
     echo
@@ -106,7 +107,7 @@ function extra-tools(){
     # Install rsyslog and other tools:
     echo "Installing rsyslog and some tools:"
     sudo apt update
-    sudo apt install -y terminator cherrytree tmux screen golang libpcap-dev massdns flatpak python3-venv
+    sudo apt install -y terminator cherrytree tmux screen libpcap-dev massdns flatpak python3-venv
     echo "Done."
 }
 
