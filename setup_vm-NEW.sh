@@ -91,7 +91,7 @@ function cli-logging(){
     sudo systemctl restart rsyslog
     
     # Finished.
-    echo "Finished setting up the CLI Logging. For best results, please restart the VM."
+    echo "Finished setting up the CLI Logging. For best results, please Quit the script and restart the VM."
 }
 #############################################################
 
@@ -99,8 +99,8 @@ function cli-logging(){
 ## Install extra tools:
 ##################################################################################
 function extra-tools(){
-    # Install rsyslog and other tools:
-    echo "Installing rsyslog and some tools:"
+    # Installing other tools:
+    echo "Installing some cool tools:"
     sudo apt update
     sudo apt install -y terminator cherrytree tmux screen golang libpcap-dev massdns flatpak python3-venv
     echo "Done."
@@ -198,15 +198,20 @@ function add-secondary-user(){
     # Let's make some default directories for the new user:
     # First, the scripts directory.  Test to make sure the directory isn't already there:
     sudo mkdir /home/${newuser}/scripts
-    sudo chown ${newuser}:${newuser} /home/${newuser}/scripts
+    #sudo chown ${newuser}:${newuser} /home/${newuser}/scripts
+
+    # Add the update script to the new user's  ~/scripts directory:
+    echo "#! /bin/bash\n\n\nsudo apt update\nsudo apt upgrade\nsudo apt dist-upgrade\nsudo apt auto-remove" > /home/${newuser}/scripts/update.sh && chmod u+x /home/${newuser}/scripts/update.sh
+    echo "#! /bin/bash\n\n\nwhoami" > /home/${newuser}/scripts/whoamiscript.sh && chmod u+x /home/${newuser}/scripts/whoamiscript.sh
 
     # Next, the Projects directory.  Test to make sure the directory isn't already there:
     sudo mkdir /home/${newuser}/Projects
-    sudo chown ${newuser}:${newuser} /home/${newuser}/Projects
+    #sudo chown ${newuser}:${newuser} /home/${newuser}/Projects
 
     # Next, the tools directory.  Test to make sure the directory isn't already there:
     sudo mkdir /home/${newuser}/tools
-    sudo chown ${newuser}:${newuser} /home/${newuser}/tools
+
+    sudo chown -R ${newuser}:${newuser} /home/${newuser}/*
 }
 
 ##################################################################################
