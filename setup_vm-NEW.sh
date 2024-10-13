@@ -333,10 +333,16 @@ alias bhb_stoplab=\"cd /media/dude/data/OldKali/Projects/Training/BlackHatBash/B
 ##################################################################################
 function install-pdtm(){
     echo "Installing PDTM:"
-    go install -v github.com/projectdiscovery/pdtm/cmd/pdtm@latest
+    go install github.com/projectdiscovery/pdtm/cmd/pdtm@latest
     
     echo "Installing all Project Discovery Tools:"
     pdtm -ia
+    
+echo -e "\n\n\"
+# Fix for Project Discovery's HHTPX:\n\
+alias httpx=\"~/.pdtm/go/bin/httpx\"\n\
+alias otherhttpx=\"/usr/bin/httpx\""\
+>> ~/.bash_aliases
 
     echo "PDTM and Project Discovery tools are installed."
 }
