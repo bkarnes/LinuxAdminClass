@@ -327,12 +327,12 @@ do
     echo " What can I do for you today?"
     echo
     echo " 1) Setup CLI logging.  Will require a reboot."
-    echo " 2) Update VM.  Will require a reboot."
-    echo " 3) Install tools"
-    echo " 4) Install Docker.  Will require a reboot."
-    echo " 5) Install netbird client."
-    echo " 6) Set up SecureWV 15 CTF"
-    echo " 7) Setup Directories"
+    echo " 2) Setup Directories"
+    echo " 3) Update VM.  Will require a reboot."
+    echo " 4) Install extra tools"
+    echo " 5) Install Docker.  Will require a reboot."
+    echo " 6) Install netbird client."
+    echo " 7) Set up SecureWV 15 CTF"
     echo " 8) Set up Black Hat Bash docker images"
     echo " 9) Add a user"
     echo " (Q)uit"
@@ -343,22 +343,22 @@ do
     	    cli-logging
     	    ;;
     	[2])
-    	    update-vm
+    	    install-directories
     	    ;;
 	[3])
-            extra-tools
+            update-vm
             ;;
 	[4])
-            install-docker
+            extra-tools
             ;;
 	[5])
-            install-netbird
+            install-docker
             ;;
 	[6])
-            securewv-15-ctf
+            install-netbird
             ;;
 	[7])
-            install-directories
+            securewv-15-ctf
             ;;
 	[8])
             blackhat-bash
