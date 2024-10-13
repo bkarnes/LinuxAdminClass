@@ -242,13 +242,6 @@ function add-secondary-user(){
 }
 
 ##################################################################################
-## Set up Black Hat Bash docker images:
-##################################################################################
-function blackhat-bash(){
-    echo "This is where the Black Hat Bash docker pull will go."
-}
-
-##################################################################################
 ## Install Netbird client:
 ##################################################################################
 function install-netbird(){
@@ -315,6 +308,32 @@ function securewv-15-ctf(){
 
 }
 
+##################################################################################
+## Set up Black Hat Bash docker images:
+##################################################################################
+function blackhat-bash(){
+    echo "Let's clone the Black Hat Bash Repo for a cool lab."
+    cd ~/Projects/
+    git clone https://github.com/dolevf/Black-Hat-Bash.git
+}
+
+
+##################################################################################
+## Install Project Discovery tools via PDTM:
+##################################################################################
+function install-pdtm(){
+    echo "Installing PDTM:"
+    go install -v github.com/projectdiscovery/pdtm/cmd/pdtm@latest
+    
+    echo "Installing all Project Discovery Tools:"
+    pdtm -ia
+
+    echo "PDTM and Project Discovery tools are installed."
+}
+
+
+
+
 #############################################################
 ## Start WhileLoop for Menu:
 #############################################################
@@ -333,8 +352,9 @@ do
     echo " 5) Install Docker.  Will require a reboot."
     echo " 6) Install netbird client."
     echo " 7) Set up SecureWV 15 CTF"
-    echo " 8) Set up Black Hat Bash docker images"
-    echo " 9) Add a user"
+    #echo " 8) Set up Black Hat Bash docker images"
+    #echo " 9) Add a user"
+    #echo " 10) Install Project Discovery Tools."
     echo " (Q)uit"
     read choice
     
@@ -364,6 +384,9 @@ do
             blackhat-bash
             ;;
 	[9])
+            add-secondary-user
+            ;;
+	[10])
             add-secondary-user
             ;;
     	[Qq])
