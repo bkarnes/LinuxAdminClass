@@ -1,11 +1,11 @@
 #! /bin/bash
 
-###############################################################
+##################################################################################
 ## Our main bash script file:
 ## 
-## to use: ./main.sh
+## to use: ./setup_vm-NEW.sh
 ## 
-#############################################################
+##################################################################################
 
 ## Some basic varibles:
 timeofday=$(date)
@@ -20,9 +20,9 @@ export BLUE
 export YELLOW
 export NC
 
-#############################################################
+##################################################################################
 ## Create the Banner to be used everywhere:
-#############################################################
+##################################################################################
 function banner(){
 #echo "${GREEN}
 echo "
@@ -47,11 +47,11 @@ echo "
 |_______|_______|__| |__|_______|_______|                    
 "
 }
-#############################################################
+##################################################################################
 
-#############################################################
+##################################################################################
 ## Setting up CLI Logging:
-#############################################################
+##################################################################################
 function cli-logging(){
 
     # Change the kali user's shell to BASH
@@ -133,17 +133,14 @@ function cli-logging(){
     echo
     echo "Done. Please restart the VM."
 }
-#############################################################
 
 ##################################################################################
-## Install extra tools:
+## Update VM:
 ##################################################################################
-function extra-tools(){
-    # Install some extra tools:
-    echo "Installing some extra tools:"
-    sudo apt update
-    sudo apt install -y terminator cherrytree tmux screen libpcap-dev massdns flatpak python3-venv
-    echo "Done."
+function update-vm(){
+    echo "Starting the update script"
+    ~/scripts/update.sh
+    echo "Done"
 }
 
 ##################################################################################
@@ -171,63 +168,6 @@ function install-docker(){
     sudo adduser $USER docker
     echo "$USER has been added to the docker group.  You will need to log out and back in again or restart the VM."
     #sudo reboot
-}
-
-##################################################################################
-## Install initial directories:
-##################################################################################
-function install-directories(){
-    # Let's make some default directories:
-    # First, the scripts directory.  Test to make sure the directory isn't already there:
-    if [ -d "~/scripts" ]; then
-        echo "~/scripts Directory exists. Skipping."
-    else
-        echo "Creating the ~/scripts directory."
-        mkdir ~/scripts
-    fi
-
-    # Next, add to the Downloads directory.  Test to make sure the directory isn't already there:
-    if [ -d "~/Downloads/Software" ]; then
-        echo "~/Downloads/Software Directory exists. Skipping."
-    else
-        echo "Creating the ~/Downloads/Software directory."
-        mkdir -p ~/Downloads/Software
-    fi
-
-    # Next, the tools directory.  Test to make sure the directory isn't already there:
-    if [ -d "~/tools" ]; then
-        echo "~/tools Directory exists. Skipping."
-    else
-        echo "Creating the ~/tools directory."
-        mkdir ~/tools
-    fi
-    
-    # Add the update script to the ~/scripts directory:
-    echo -e "#! /bin/bash\n\n\nsudo apt update\nsudo apt upgrade -y\nsudo apt dist-upgrade -y\nsudo apt auto-remove -y" > ~/scripts/update.sh && chmod u+x ~/scripts/update.sh
-    echo -e "#! /bin/bash\n\n\nwhoami" > ~/scripts/whoamiscript.sh && chmod u+x ~/scripts/whoamiscript.sh
-    echo
-    echo
-    
-    # Let the user know you are finished:
-    echo
-    echo "Done."
-}
-
-##################################################################################
-## Update VM:
-##################################################################################
-function update-vm(){
-    echo "Starting the update script"
-    ~/scripts/update.sh
-    echo "Done"
-}
-
-##################################################################################
-## Who am I?:
-##################################################################################
-function who-am-i(){
-    echo "Who am I?"
-    ~/scripts/whoamiscript.sh
 }
 
 ##################################################################################
@@ -385,9 +325,9 @@ alias otherhttpx=\"/usr/bin/httpx\"\n"\
     echo "PDTM and Project Discovery tools are installed."
 }
 
-#############################################################
+##################################################################################
 ## Start WhileLoop for Menu:
-#############################################################
+##################################################################################
 while true
 do
     clear
@@ -398,13 +338,12 @@ do
     echo
     echo " 1) Setup CLI logging and default directories.  Will require a reboot."
     echo " 2) Update VM.  Will require a reboot."
-    #echo " 3) Install extra tools"
-    echo " 4) Install Docker.  Will require a reboot."
-    echo " 5) Install netbird client."
-    echo " 6) Set up SecureWV 15 CTF"
-    echo " 7) Set up Black Hat Bash docker images"
-    echo " 8) Install Project Discovery Tools."
-    echo " 9) Add a user"
+    echo " 3) Install Docker.  Will require a reboot."
+    echo " 4) Install netbird client."
+    echo " 5) Set up SecureWV 15 CTF"
+    echo " 6) Set up Black Hat Bash docker images"
+    echo " 7) Install Project Discovery Tools."
+    echo " 8) Add a user (Optional)"
     echo " (R)eboot"
     echo " (Q)uit"
     read choice
@@ -417,24 +356,21 @@ do
             update-vm
             ;;
 	[3])
-            extra-tools
-            ;;
-	[4])
             install-docker
             ;;
-	[5])
+	[4])
             install-netbird
             ;;
-	[6])
+	[5])
             securewv-15-ctf
             ;;
-	[7])
+	[6])
             blackhat-bash
             ;;
-	[8])
+	[7])
             install-pdtm
             ;;
-	[9])
+	[8])
             add-secondary-user
             ;;
         [Rr])
