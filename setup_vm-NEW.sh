@@ -396,7 +396,7 @@ do
     echo " Today is: $timeofday"
     echo " What can I do for you today?"
     echo
-    echo " 1) Setup CLI logging.  Will require a reboot."
+    echo " 1) Setup CLI logging and default directories.  Will require a reboot."
     echo " 2) Update VM.  Will require a reboot."
     #echo " 3) Install extra tools"
     echo " 4) Install Docker.  Will require a reboot."
