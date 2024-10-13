@@ -318,11 +318,11 @@ function blackhat-bash(){
     
 echo -e "\n\
 # Black-Hat-Bash:
-alias rustscan='docker run --network=host -it --rm --name rustscan rustscan/rustscan:2.1.1'\n\
-alias gitjacker=\"/home/dude/tools/gitjacker\n\"\
-alias bhb_project=\"cd /media/dude/data/OldKali/Projects/Training/BlackHatBash/Black-Hat-Bash/\n\"\
-alias bhb_labs=\"cd /media/dude/data/OldKali/Projects/Training/BlackHatBash/Black-Hat-Bash/lab/\n\"\
-alias bhb_startlab=\"cd /media/dude/data/OldKali/Projects/Training/BlackHatBash/Black-Hat-Bash/lab/ && docker compose up --detach\n\"\
+alias rustscan=\"docker run --network=host -it --rm --name rustscan rustscan/rustscan:2.1.1\"\n\
+alias gitjacker=\"/home/dude/tools/gitjacker\"\n\
+alias bhb_project=\"cd /media/dude/data/OldKali/Projects/Training/BlackHatBash/Black-Hat-Bash/\"\n\
+alias bhb_labs=\"cd /media/dude/data/OldKali/Projects/Training/BlackHatBash/Black-Hat-Bash/lab/\"\n\
+alias bhb_startlab=\"cd /media/dude/data/OldKali/Projects/Training/BlackHatBash/Black-Hat-Bash/lab/ && docker compose up --detach\"\n\
 alias bhb_stoplab=\"cd /media/dude/data/OldKali/Projects/Training/BlackHatBash/Black-Hat-Bash/lab/ && docker compose down --volumes\"\n"\
 >> ~/.bash_aliases 
 }
