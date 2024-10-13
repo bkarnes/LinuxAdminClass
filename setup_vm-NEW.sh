@@ -291,14 +291,19 @@ function blackhat-bash(){
     cd ~/Projects/
     git clone https://github.com/dolevf/Black-Hat-Bash.git
     
+    cd ~/Projects/Black-Hat-Bash/lab
+    sudo make deploy
+
+    sudo make teardown
+    
 echo -e "\n\
 # Black-Hat-Bash:
 alias rustscan=\"docker run --network=host -it --rm --name rustscan rustscan/rustscan:2.1.1\"\n\
-alias gitjacker=\"/home/dude/tools/gitjacker\"\n\
-alias bhb_project=\"cd /media/dude/data/OldKali/Projects/Training/BlackHatBash/Black-Hat-Bash/\"\n\
-alias bhb_labs=\"cd /media/dude/data/OldKali/Projects/Training/BlackHatBash/Black-Hat-Bash/lab/\"\n\
-alias bhb_startlab=\"cd /media/dude/data/OldKali/Projects/Training/BlackHatBash/Black-Hat-Bash/lab/ && docker compose up --detach\"\n\
-alias bhb_stoplab=\"cd /media/dude/data/OldKali/Projects/Training/BlackHatBash/Black-Hat-Bash/lab/ && docker compose down --volumes\""\
+alias gitjacker=\"/home/kali/tools/gitjacker\"\n\
+alias bhb_project=\"cd ~/Projects/Black-Hat-Bash/\"\n\
+alias bhb_labs=\"cd ~/Projects/Black-Hat-Bash/lab/\"\n\
+alias bhb_startlab=\"cd ~/Projects/Black-Hat-Bash/lab/ && docker compose up --detach\"\n\
+alias bhb_stoplab=\"cd ~/Projects/Black-Hat-Bash/lab/ && docker compose down --volumes\""\
 >> ~/.bash_aliases 
 }
 
