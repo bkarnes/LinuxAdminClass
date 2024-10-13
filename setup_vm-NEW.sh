@@ -65,7 +65,7 @@ function cli-logging(){
 
     # Install rsyslog and other tools:
     echo "Installing rsyslog and some tools:"
-    sudo apt install -y rsyslog golang
+    sudo apt install -y rsyslog golang terminator cherrytree tmux screen libpcap-dev massdns flatpak python3-venv
     echo "Done."
     
     # Set up the logging of our commands:
@@ -396,10 +396,9 @@ do
     echo " Today is: $timeofday"
     echo " What can I do for you today?"
     echo
-    echo " 0) Setup CLI logging.  Will require a reboot."
-    echo " 1) Setup Directories"
+    echo " 1) Setup CLI logging.  Will require a reboot."
     echo " 2) Update VM.  Will require a reboot."
-    echo " 3) Install extra tools"
+    #echo " 3) Install extra tools"
     echo " 4) Install Docker.  Will require a reboot."
     echo " 5) Install netbird client."
     echo " 6) Set up SecureWV 15 CTF"
@@ -411,11 +410,8 @@ do
     read choice
     
     case $choice in
-    	[0])
-    	    cli-logging
-    	    ;;
     	[1])
-    	    install-directories
+    	    cli-logging
     	    ;;
 	[2])
             update-vm
