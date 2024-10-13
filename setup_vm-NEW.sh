@@ -323,7 +323,7 @@ alias gitjacker=\"/home/dude/tools/gitjacker\n\"\
 alias bhb_project=\"cd /media/dude/data/OldKali/Projects/Training/BlackHatBash/Black-Hat-Bash/\n\"\
 alias bhb_labs=\"cd /media/dude/data/OldKali/Projects/Training/BlackHatBash/Black-Hat-Bash/lab/\n\"\
 alias bhb_startlab=\"cd /media/dude/data/OldKali/Projects/Training/BlackHatBash/Black-Hat-Bash/lab/ && docker compose up --detach\n\"\
-alias bhb_stoplab=\"cd /media/dude/data/OldKali/Projects/Training/BlackHatBash/Black-Hat-Bash/lab/ && docker compose down --volumes\n"\
+alias bhb_stoplab=\"cd /media/dude/data/OldKali/Projects/Training/BlackHatBash/Black-Hat-Bash/lab/ && docker compose down --volumes\"\n"\
 >> ~/.bash_aliases 
 }
 
@@ -342,7 +342,7 @@ function install-pdtm(){
 echo -e "\n\
 # Fix for Project Discovery's HHTPX:\n\
 alias httpx=\"~/.pdtm/go/bin/httpx\"\n\
-alias otherhttpx=\"/usr/bin/httpx\""\
+alias otherhttpx=\"/usr/bin/httpx\"\n"\
 >> ~/.bash_aliases
 
     echo
