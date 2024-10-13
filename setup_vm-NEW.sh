@@ -249,6 +249,28 @@ function blackhat-bash(){
 }
 
 ##################################################################################
+## Install Netbird client:
+##################################################################################
+function install-netbird(){
+    echo "This is where we install netbird client."
+    #curl -fsSL https://pkgs.netbird.io/install.sh | sh
+    
+    # Add the repository:
+    sudo apt-get update
+    sudo apt install ca-certificates curl gnupg -y
+    curl -sSL https://pkgs.netbird.io/debian/public.key | sudo gpg --dearmor --output /usr/share/keyrings/netbird-archive-keyring.gpg
+    echo 'deb [signed-by=/usr/share/keyrings/netbird-archive-keyring.gpg] https://pkgs.netbird.io/debian stable main' | sudo tee /etc/apt/sources.list.d/netbird.list
+
+    # Update first:
+    sudo apt-get update
+
+    # Install the Clientl
+    sudo apt-get install netbird netbird-ui
+
+    echo "Done.  Netbird is installed."
+}
+
+##################################################################################
 ## Set up SecureWV 15 CTF:
 ##################################################################################
 function securewv-15-ctf(){
@@ -285,6 +307,7 @@ function securewv-15-ctf(){
         # Change to the Directory and move things around.
         cd ~/Projects/SecureWV-CTF
         cp CTF_bash_aliases ~/.bash_aliases
+        chmod u+x startjuiceshop.sh
         source ~/.bash_aliases
     fi
     
