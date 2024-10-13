@@ -339,7 +339,7 @@ function install-pdtm(){
     echo "Finished install PDTM, Installing all Project Discovery Tools:"
     pdtm -ia
     
-echo -e "\n\n\
+echo -e "\n\
 # Fix for Project Discovery's HHTPX:\n\
 alias httpx=\"~/.pdtm/go/bin/httpx\"\n\
 alias otherhttpx=\"/usr/bin/httpx\""\
