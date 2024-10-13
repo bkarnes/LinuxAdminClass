@@ -315,6 +315,16 @@ function blackhat-bash(){
     echo "Let's clone the Black Hat Bash Repo for a cool lab."
     cd ~/Projects/
     git clone https://github.com/dolevf/Black-Hat-Bash.git
+    
+    echo -e "\n\
+    # Black-Hat-Bash:
+    alias rustscan='docker run --network=host -it --rm --name rustscan rustscan/rustscan:2.1.1'\
+    alias gitjacker=\"/home/dude/tools/gitjacker\"\
+    alias bhb_project=\"cd /media/dude/data/OldKali/Projects/Training/BlackHatBash/Black-Hat-Bash/\"\
+    alias bhb_labs=\"cd /media/dude/data/OldKali/Projects/Training/BlackHatBash/Black-Hat-Bash/lab/\"\
+    alias bhb_startlab=\"cd /media/dude/data/OldKali/Projects/Training/BlackHatBash/Black-Hat-Bash/lab/ && docker compose up --detach\"\
+    alias bhb_stoplab=\"cd /media/dude/data/OldKali/Projects/Training/BlackHatBash/Black-Hat-Bash/lab/ && docker compose down --volumes\""\
+    >> ~/.bash_aliases 
 }
 
 
@@ -331,9 +341,6 @@ function install-pdtm(){
     echo "PDTM and Project Discovery tools are installed."
 }
 
-
-
-
 #############################################################
 ## Start WhileLoop for Menu:
 #############################################################
@@ -345,48 +352,48 @@ do
     echo " Today is: $timeofday"
     echo " What can I do for you today?"
     echo
-    echo " 1) Setup CLI logging.  Will require a reboot."
-    echo " 2) Setup Directories"
-    echo " 3) Update VM.  Will require a reboot."
-    echo " 4) Install extra tools"
-    echo " 5) Install Docker.  Will require a reboot."
-    echo " 6) Install netbird client."
-    echo " 7) Set up SecureWV 15 CTF"
-    #echo " 8) Set up Black Hat Bash docker images"
-    #echo " 9) Add a user"
-    #echo " 10) Install Project Discovery Tools."
+    echo " 0) Setup CLI logging.  Will require a reboot."
+    echo " 1) Setup Directories"
+    echo " 2) Update VM.  Will require a reboot."
+    echo " 3) Install extra tools"
+    echo " 4) Install Docker.  Will require a reboot."
+    echo " 5) Install netbird client."
+    echo " 6) Set up SecureWV 15 CTF"
+    echo " 7) Set up Black Hat Bash docker images"
+    echo " 8) Install Project Discovery Tools."
+    echo " 9) Add a user"
     echo " (Q)uit"
     read choice
     
     case $choice in
-    	[1])
+    	[0])
     	    cli-logging
     	    ;;
-    	[2])
+    	[1])
     	    install-directories
     	    ;;
-	[3])
+	[2])
             update-vm
             ;;
-	[4])
+	[3])
             extra-tools
             ;;
-	[5])
+	[4])
             install-docker
             ;;
-	[6])
+	[5])
             install-netbird
             ;;
-	[7])
+	[6])
             securewv-15-ctf
             ;;
-	[8])
+	[7])
             blackhat-bash
             ;;
-	[9])
-            add-secondary-user
+	[8])
+            install-pdtm
             ;;
-	[10])
+	[9])
             add-secondary-user
             ;;
     	[Qq])
