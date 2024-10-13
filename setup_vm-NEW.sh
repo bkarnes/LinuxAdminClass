@@ -315,7 +315,7 @@ function install-pdtm(){
     pdtm -ia
     
 echo -e "\n\
-# Fix for Project Discovery's HHTPX:\n\
+# Fix for Project Discovery's HTTPX:\n\
 alias httpx=\"~/.pdtm/go/bin/httpx\"\n\
 alias otherhttpx=\"/usr/bin/httpx\""\
 >> ~/.bash_aliases
