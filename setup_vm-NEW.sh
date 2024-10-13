@@ -104,7 +104,7 @@ function cli-logging(){
 ## Install extra tools:
 ##################################################################################
 function extra-tools(){
-    # Install rsyslog and other tools:
+    # Install some extra tools:
     echo "Installing some extra tools:"
     sudo apt update
     sudo apt install -y terminator cherrytree tmux screen libpcap-dev massdns flatpak python3-venv
@@ -168,7 +168,7 @@ function install-directories(){
     fi
     
     # Add the update script to the ~/scripts directory:
-    echo -e "#! /bin/bash\n\n\nsudo apt update\nsudo apt upgrade\nsudo apt dist-upgrade\nsudo apt auto-remove" > ~/scripts/update.sh && chmod u+x ~/scripts/update.sh
+    echo -e "#! /bin/bash\n\n\nsudo apt update\nsudo apt upgrade -y\nsudo apt dist-upgrade -y\nsudo apt auto-remove -y" > ~/scripts/update.sh && chmod u+x ~/scripts/update.sh
     echo -e "#! /bin/bash\n\n\nwhoami" > ~/scripts/whoamiscript.sh && chmod u+x ~/scripts/whoamiscript.sh
     echo
     echo
