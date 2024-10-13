@@ -274,7 +274,8 @@ function securewv-15-ctf(){
     
         # Change to the Directory and move things around.
         cd ~/Projects/SecureWV-CTF
-        cp CTF_bash_aliases ~/.bash_aliases
+        #cp CTF_bash_aliases ~/.bash_aliases
+        cat CTF_bash_aliases >> ~/.bash_aliases
         chmod u+x startjuiceshop.sh
         source ~/.bash_aliases
     fi
