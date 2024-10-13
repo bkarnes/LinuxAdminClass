@@ -96,7 +96,42 @@ function cli-logging(){
     sudo systemctl restart rsyslog
     
     # Finished.
-    echo "Finished setting up the CLI Logging. For best results, please restart the VM."
+    echo "Finished setting up the CLI Logging. Now, let's set up the default directories."
+    
+    # Let's make some default directories:
+    # First, the scripts directory.  Test to make sure the directory isn't already there:
+    if [ -d "~/scripts" ]; then
+        echo "~/scripts Directory exists. Skipping."
+    else
+        echo "Creating the ~/scripts directory."
+        mkdir ~/scripts
+    fi
+
+    # Next, add to the Downloads directory.  Test to make sure the directory isn't already there:
+    if [ -d "~/Downloads/Software" ]; then
+        echo "~/Downloads/Software Directory exists. Skipping."
+    else
+        echo "Creating the ~/Downloads/Software directory."
+        mkdir -p ~/Downloads/Software
+    fi
+
+    # Next, the tools directory.  Test to make sure the directory isn't already there:
+    if [ -d "~/tools" ]; then
+        echo "~/tools Directory exists. Skipping."
+    else
+        echo "Creating the ~/tools directory."
+        mkdir ~/tools
+    fi
+    
+    # Add the update script to the ~/scripts directory:
+    echo -e "#! /bin/bash\n\n\nsudo apt update\nsudo apt upgrade -y\nsudo apt dist-upgrade -y\nsudo apt auto-remove -y" > ~/scripts/update.sh && chmod u+x ~/scripts/update.sh
+    echo -e "#! /bin/bash\n\n\nwhoami" > ~/scripts/whoamiscript.sh && chmod u+x ~/scripts/whoamiscript.sh
+    echo
+    echo
+    
+    # Let the user know you are finished:
+    echo
+    echo "Done. Please restart the VM."
 }
 #############################################################
 
