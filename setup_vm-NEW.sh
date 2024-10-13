@@ -371,6 +371,7 @@ do
     echo " 7) Set up Black Hat Bash docker images"
     echo " 8) Install Project Discovery Tools."
     echo " 9) Add a user"
+    echo " (R)eboot"
     echo " (Q)uit"
     read choice
     
@@ -404,6 +405,9 @@ do
             ;;
 	[9])
             add-secondary-user
+            ;;
+        [Rr])
+            sudo reboot
             ;;
     	[Qq])
   	    echo
