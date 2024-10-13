@@ -105,7 +105,7 @@ function cli-logging(){
 ##################################################################################
 function extra-tools(){
     # Install rsyslog and other tools:
-    echo "Installing rsyslog and some tools:"
+    echo "Installing some extra tools:"
     sudo apt update
     sudo apt install -y terminator cherrytree tmux screen libpcap-dev massdns flatpak python3-venv
     echo "Done."
