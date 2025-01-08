@@ -144,7 +144,7 @@ function update-vm(){
 }
 
 ##################################################################################
-## Install Docker:
+## Install Docker (Now using Podman):
 ##################################################################################
 function install-docker(){
    # Test to make sure Docker isn't already on the system:
@@ -153,26 +153,27 @@ function install-docker(){
    else
       echo "Docker is not installed, installing it now."
       # Add Docker's official GPG key:
-      sudo apt-get update
-      sudo apt-get install -y ca-certificates curl
-      sudo install -m 0755 -d /etc/apt/keyrings
-      sudo curl -fsSL https://download.docker.com/linux/debian/gpg -o /etc/apt/keyrings/docker.asc
-      sudo chmod a+r /etc/apt/keyrings/docker.asc
+      #sudo apt-get update
+      #sudo apt-get install -y ca-certificates curl
+      #sudo install -m 0755 -d /etc/apt/keyrings
+      #sudo curl -fsSL https://download.docker.com/linux/debian/gpg -o /etc/apt/keyrings/docker.asc
+      #sudo chmod a+r /etc/apt/keyrings/docker.asc
 
       # Add the repository to Apt sources:
-      echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/debian bullseye stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+      #echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/debian bullseye stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
     
       # Update the APT Cache:
       sudo apt-get update
     
       # Install docker and docker-compose components:
-      sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose docker-compose-plugin
+      #sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose docker-compose-plugin
+      sudo apt install podman-docker
    fi
 
     # Set the current user to run docker with root previlages:
-    echo "Adding the current user to the docker group."
-    sudo adduser $USER docker
-    echo "$USER has been added to the docker group.  You will need to log out and back in again or restart the VM."
+    #echo "Adding the current user to the docker group."
+    #sudo adduser $USER docker
+    #echo "$USER has been added to the docker group.  You will need to log out and back in again or restart the VM."
     #sudo reboot
 }
 
@@ -252,7 +253,8 @@ function securewv-15-ctf(){
     
     # Pull the JuiceShop Docer image down:
     echo "Pulling the latest JuiceShop Docker image."
-    docker pull bkimminich/juice-shop
+    #docker pull bkimminich/juice-shop
+    podman pull docker.io/bkimminich/juice-shop
     echo "Done."
     echo
     
