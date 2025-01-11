@@ -167,7 +167,7 @@ function install-docker(){
     
       # Install docker and docker-compose components:
       #sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose docker-compose-plugin
-      sudo apt install podman-docker
+      sudo apt install -y podman-docker
    fi
 
     # Set the current user to run docker with root previlages:
