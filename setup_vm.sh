@@ -177,7 +177,7 @@ function install-docker(){
     echo "Adding the current user to the docker group."
     sudo adduser $USER docker
     echo "$USER has been added to the docker group.  You will need to log out and back in again or restart the VM."
-    echo "\n# Setting the docker socket:\nexport DOCKER_HOST=unix:///var/run/docker.sock" >> .bashrc
+    echo "\n# Setting the docker socket:\nexport DOCKER_HOST=unix:///var/run/docker.sock" >> ~/.bashrc
     #sudo reboot
 }
 
