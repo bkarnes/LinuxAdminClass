@@ -148,7 +148,7 @@ function update-vm(){
 ##################################################################################
 function install-docker(){
    # Remove Podman:
-   sudo apt remove podman && sudo apt purge podman
+   sudo apt remove podman -y && sudo apt purge podman -y
    
    # Test to make sure Docker isn't already on the system:
    if command -v docker &> /dev/null; then
