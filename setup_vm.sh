@@ -257,8 +257,8 @@ function securewv-15-ctf(){
     
     # Pull the JuiceShop Docer image down:
     echo "Pulling the latest JuiceShop Docker image."
-    #docker pull bkimminich/juice-shop
-    podman pull docker.io/bkimminich/juice-shop
+    docker pull bkimminich/juice-shop
+    #podman pull docker.io/bkimminich/juice-shop
     echo "Done."
     echo
     
