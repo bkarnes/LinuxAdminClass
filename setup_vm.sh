@@ -147,33 +147,37 @@ function update-vm(){
 ## Install Docker (Now using Podman):
 ##################################################################################
 function install-docker(){
+   # Remove Podman:
+   sudo apt remove podman && sudo apt purge podman
+   
    # Test to make sure Docker isn't already on the system:
    if command -v docker &> /dev/null; then
        echo "Docker is already installed, skipping installation."
    else
       echo "Docker is not installed, installing it now."
-      # Add Docker's official GPG key:
-      #sudo apt-get update
-      #sudo apt-get install -y ca-certificates curl
-      #sudo install -m 0755 -d /etc/apt/keyrings
-      #sudo curl -fsSL https://download.docker.com/linux/debian/gpg -o /etc/apt/keyrings/docker.asc
-      #sudo chmod a+r /etc/apt/keyrings/docker.asc
+      
+      # Add the docker apt source
+      printf '%s\n' "deb https://download.docker.com/linux/debian bullseye stable" | sudo tee /etc/apt/sources.list.d/docker-ce.list
 
-      # Add the repository to Apt sources:
-      #echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/debian bullseye stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
-    
+	  # Next, let's download and import the gpg key
+      curl -fsSL https://download.docker.com/linux/debian/gpg | sudo gpg --dearmor -o /etc/apt/trusted.gpg.d/docker-ce-archive-keyring.gpg
+
       # Update the APT Cache:
       sudo apt-get update
     
       # Install docker and docker-compose components:
       #sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose docker-compose-plugin
-      sudo apt install -y podman-docker
+      sudo apt install docker-ce docker-ce-cli containerd.io -y
+      
+      # Start Docker:
+      sudo service docker start
    fi
 
     # Set the current user to run docker with root previlages:
-    #echo "Adding the current user to the docker group."
-    #sudo adduser $USER docker
-    #echo "$USER has been added to the docker group.  You will need to log out and back in again or restart the VM."
+    echo "Adding the current user to the docker group."
+    sudo adduser $USER docker
+    echo "$USER has been added to the docker group.  You will need to log out and back in again or restart the VM."
+    echo "\n# Setting the docker socket:\nexport DOCKER_HOST=unix:///var/run/docker.sock" >> .bashrc
     #sudo reboot
 }
 
