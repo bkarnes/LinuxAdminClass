@@ -100,27 +100,27 @@ function cli-logging(){
     
     # Let's make some default directories:
     # First, the scripts directory.  Test to make sure the directory isn't already there:
-    if [ -d "~/scripts" ]; then
+    if [ -d "$HOME/scripts" ]; then
         echo "~/scripts Directory exists. Skipping."
     else
         echo "Creating the ~/scripts directory."
-        mkdir ~/scripts
+        mkdir "$HOME/scripts"
     fi
 
     # Next, add to the Downloads directory.  Test to make sure the directory isn't already there:
-    if [ -d "~/Downloads/Software" ]; then
+    if [ -d "$HOME/Downloads/Software" ]; then
         echo "~/Downloads/Software Directory exists. Skipping."
     else
         echo "Creating the ~/Downloads/Software directory."
-        mkdir -p ~/Downloads/Software
+        mkdir -p "$HOME/Downloads/Software"
     fi
 
     # Next, the tools directory.  Test to make sure the directory isn't already there:
-    if [ -d "~/tools" ]; then
+    if [ -d "$HOME/tools" ]; then
         echo "~/tools Directory exists. Skipping."
     else
         echo "Creating the ~/tools directory."
-        mkdir ~/tools
+        mkdir "$HOME/tools"
     fi
     
     # Add the update script to the ~/scripts directory:
