@@ -130,8 +130,13 @@ function cli-logging(){
     echo
     
     # Let the user know you are finished:
-    echo
-    echo "Done. Please restart the VM."
+    #echo
+    #echo "Done. Please restart the VM."
+    
+    # Reboot the VM:
+    echo "Done. Will now reboot."
+    sleep 5
+    sudo reboot
 }
 
 ##################################################################################
@@ -140,7 +145,12 @@ function cli-logging(){
 function update-vm(){
     echo "Starting the update script"
     ~/scripts/update.sh
-    echo "Done"
+    #echo "Done"
+    
+    # Reboot the VM:
+    echo "Done. Will now reboot."
+    sleep 5
+    sudo reboot
 }
 
 ##################################################################################
@@ -179,6 +189,11 @@ function install-docker(){
     echo "$USER has been added to the docker group.  You will need to log out and back in again or restart the VM."
     echo -e "\n# Setting the docker socket:\nexport DOCKER_HOST=unix:///var/run/docker.sock" >> ~/.bashrc
     #sudo reboot
+    
+    # Reboot the VM:
+    echo "Done. Will now reboot."
+    sleep 5
+    sudo reboot
 }
 
 ##################################################################################
@@ -234,6 +249,11 @@ EOF
 
     # Own the whole home directory
     sudo chown -R "${newuser}:${newuser}" "/home/${newuser}"
+    
+    # Reboot the VM:
+    echo "Done. Will now reboot."
+    sleep 5
+    sudo reboot
 }
 
 ##################################################################################
@@ -255,13 +275,18 @@ function install-netbird(){
     # Install the Clientl
     sudo apt-get install netbird netbird-ui
 
-    echo "Done.  Netbird is installed."
+    #echo "Done.  Netbird is installed."
+    
+    # Reboot the VM:
+    echo "Done. Will now reboot."
+    sleep 5
+    sudo reboot
 }
 
 ##################################################################################
-## Set up SecureWV 15 CTF:
+## Set up OWASP JuiceShop:
 ##################################################################################
-function securewv-15-ctf(){
+function owasp_juiceshop(){
     #echo "This is where the CTF setup will go."
     
     # Pull the JuiceShop Docer image down:
@@ -300,7 +325,8 @@ function securewv-15-ctf(){
         source ~/.bash_aliases
     fi
     
-    echo "Finished setting up the CTF for SecureWV 15."
+    #echo "Finished setting up the CTF for SecureWV 15."
+    echo "Finished setting up the OWASP JuiceShop."
 
 }
 
@@ -325,7 +351,11 @@ alias bhb_project=\"cd ~/Projects/Black-Hat-Bash/\"\n\
 alias bhb_labs=\"cd ~/Projects/Black-Hat-Bash/lab/\"\n\
 alias bhb_startlab=\"cd ~/Projects/Black-Hat-Bash/lab/ && docker compose up --detach\"\n\
 alias bhb_stoplab=\"cd ~/Projects/Black-Hat-Bash/lab/ && docker compose down --volumes\""\
->> ~/.bash_aliases 
+>> ~/.bash_aliases
+
+# Let the user know that we're done."
+echo "We have finished setting up the Black Hat Bash Repo."
+
 }
 
 
@@ -366,7 +396,7 @@ do
     echo " 2) Update VM.  Will require a reboot."
     echo " 3) Install Docker.  Will require a reboot."
     echo " 4) Install netbird client."
-    echo " 5) Set up SecureWV 15 CTF"
+    echo " 5) Set up the OWASP JuiceShop."
     echo " 6) Set up Black Hat Bash docker images.  Will need a reboot."
     echo " 7) Install Project Discovery Tools.  Will need a reboot."
     echo " 8) Add a user (Optional)"
@@ -388,7 +418,7 @@ do
             install-netbird
             ;;
 	[5])
-            securewv-15-ctf
+            owasp_juiceshop
             ;;
 	[6])
             blackhat-bash
