@@ -255,10 +255,12 @@ EOF
     
     # Lock the kali user for after reboot:
     sudo passwd -l kali
+    echo
+    echo "You will not be able to log in as the Kali user after this."
     
     # Reboot the VM:
     echo "Done. Will now reboot."
-    sleep 5
+    sleep 10
     sudo reboot
 }
 
