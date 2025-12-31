@@ -7,7 +7,7 @@ This is the main repo for the Linux Admin Class at BridgeValley.
 Please note that the script is currently only set up for Kali.  I'm working on the Parrot version.
 
 ## Setup your VM:
-Once you've started your VM in VirtualBox, you will need to run the following commands to get the setup script on your machine.
+Once you've started your VM in VirtualBox and logged in as the kali user (kali:kali), you will need to run the following commands to get the setup script on your machine.
 
 ```
 mkdir Projects
