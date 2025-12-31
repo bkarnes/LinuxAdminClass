@@ -125,12 +125,11 @@ function cli-logging(){
     echo
     echo
     
-    # Let the user know you are finished:
-    #echo
-    #echo "Done. Please restart the VM."
+    # Setting SSH to be enabled:
+    sudo systemctl enable ssh
     
-    # Reboot the VM:
-    echo "Done. Will now reboot."
+    # Let the user know you are finished and reboot the VM:
+    echo "Set up is complete. Will now reboot."
     sleep 5
     sudo reboot
 }
