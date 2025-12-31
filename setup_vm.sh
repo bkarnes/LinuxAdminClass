@@ -196,8 +196,8 @@ function install-docker(){
 ##  Add a user:
 ##################################################################################
 add-secondary-user() {
-    echo "Before setting up a new user, we need to update the kali user:"
-    passwd
+    #echo "Before setting up a new user, we need to update the kali user:"
+    #passwd
 
     # Change the kali user's shell to BASH
     chsh -s /bin/bash
@@ -258,6 +258,7 @@ EOF
     echo "You will not be able to log in as the Kali user after this."
     
     # Reboot the VM:
+    echo
     echo "Done. Will now reboot."
     sleep 10
     sudo reboot
