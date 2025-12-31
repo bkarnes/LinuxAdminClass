@@ -427,7 +427,7 @@ do
             install-pdtm
             ;;
 	[8])
-            add_secondary_user
+            add-secondary-user
             ;;
         [Rr])
             sudo reboot
