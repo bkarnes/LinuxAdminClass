@@ -398,14 +398,14 @@ do
     echo " Today is: $timeofday"
     echo " What can I do for you today?"
     echo
-    echo " 1) Setup CLI logging and default directories.  Will require a reboot."
-    echo " 2) Update VM.  Will require a reboot."
-    echo " 3) Install Docker.  Will require a reboot."
+    echo " 1) Add a new user.  Will reboot after update."
+    echo " 2) Setup CLI logging and default directories.  Will reboot after update."
+    echo " 3) Install Docker.  Will reboot after update."
     echo " 4) Install netbird client."
     echo " 5) Set up the OWASP JuiceShop."
     echo " 6) Set up Black Hat Bash docker images.  Will need a reboot."
     echo " 7) Install Project Discovery Tools.  Will need a reboot."
-    echo " 8) Add a user (Optional)"
+    echo " 8) Update VM.  Will reboot after update."
     echo " (R)eboot"
     echo " (Q)uit"
     read choice
