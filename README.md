@@ -7,9 +7,18 @@ This is the main repo for the Linux Admin Class at BridgeValley.
 Please note that the script is currently only set up for Kali.  I'm working on the Parrot version.
 
 ## Setup your VM:
-Once you've set up your VM and it is ready, run the setup_vm.sh script and it will prep your VM for the SecureWV CTF.  You will need to set the script as executable before you can run it.  See the documentation at: <URL>
+Once you've started your VM in VirtualBox, you will need to run the following commands to get the setup script on your machine.
 
-## Setup Menu:
+```
+mkdir Projects
+cd Projects
+git clone https://github.com/bkarnes/LinuxAdminClass.git
+cd LinuxAdminClass
+chmod u+x setup_vm.sh
+./setup_vm.sh
+```
+This will then open the setup menu (see below):
+
 ```
  ___     ___ __    _ __   __ __   __                         
 |   |   |   |  |  | |  | |  |  |_|  |                        
