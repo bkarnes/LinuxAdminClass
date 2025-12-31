@@ -182,49 +182,58 @@ function install-docker(){
 }
 
 ##################################################################################
-## Add a user:
+##  Add a user:
 ##################################################################################
-function add-secondary-user(){
+add-secondary-user() {
     echo "Setting up a new user:"
-    echo "What is the New User's name?"
-    read newuser
-
-    # Add a new secondary user:
-    sudo adduser $newuser  # <-- Change the user name here
-    sudo adduser $newuser sudo # <-- Change the user name here
-
-    # Let's make some default directories for the new user:
-
-    # First, the scripts directory.  Test to make sure the directory isn't already there:
-    if [ -d "/home/${newuser}/scripts" ]; then
-        echo "/home/${newuser}/scripts Directory exists. Skipping."
-    else
-        echo "Creating the /home/${newuser}/scripts directory."
-        sudo mkdir /home/${newuser}/scripts
-    fi
-    
-    # Add the update script to the new user's  ~/scripts directory:
-    echo -e "#! /bin/bash\n\n\nsudo apt update\nsudo apt upgrade\nsudo apt dist-upgrade\nsudo apt auto-remove" > /home/${newuser}/scripts/update.sh && chmod u+x /home/${newuser}/scripts/update.sh
-    echo -e "#! /bin/bash\n\n\nwhoami" > /home/${newuser}/scripts/whoamiscript.sh && chmod u+x /home/${newuser}/scripts/whoamiscript.sh
-
-    # Next, add to the Projects directory.  Test to make sure the directory isn't already there:
-    if [ -d "/home/${newuser}/Projects" ]; then
-        echo "/home/${newuser}/Projects Directory exists. Skipping."
-    else
-        echo "Creating the /home/${newuser}/Projects directory."
-        sudo mkdir /home/${newuser}/Projects
+    read -rp "What is the New User's name? " newuser
+    # Ensure we have a name
+    if [[ -z $newuser ]]; then
+        echo "User name cannot be empty." >&2
+        return 1
     fi
 
-    # Next, the tools directory.  Test to make sure the directory isn't already there:
-    if [ -d "/home/${newuser}/tools" ]; then
-        echo "/home/${newuser}/tools Directory exists. Skipping."
-    else
-        echo "Creating the /home/${newuser}/tools directory."
-        sudo mkdir /home/${newuser}/tools
-    fi
+    # Add the user (creates /home/$newuser automatically)
+    sudo adduser "$newuser"
+    # Add the user to the sudo group
+    #sudo usermod -aG sudo "$newuser"
+    sudo adduser $newuser sudo
 
-    sudo chown -R ${newuser}:${newuser} /home/${newuser}/*
+    # Base directories
+    for dir in Desktop Documents Downloads Music Pictures Projects Public scripts Templates tools Videos; do
+        target="/home/${newuser}/${dir}"
+        if [[ -d $target ]]; then
+            echo "$target already exists. Skipping."
+        else
+            echo "Creating $target."
+            sudo mkdir -p "$target"
+        fi
+    done
 
+    # Create the update.sh script
+    cat <<'EOF' | sudo tee "/home/${newuser}/scripts/update.sh" > /dev/null
+#!/bin/bash
+
+sudo apt update
+sudo apt upgrade
+sudo apt dist-upgrade
+sudo apt autoremove
+EOF
+    sudo chmod u+x "/home/${newuser}/scripts/update.sh"
+
+    # Create the whoami script
+    cat <<'EOF' | sudo tee "/home/${newuser}/scripts/whoamiscript.sh" > /dev/null
+#!/bin/bash
+
+whoami
+EOF
+    sudo chmod u+x "/home/${newuser}/scripts/whoamiscript.sh"
+
+    # Copy over the LinuxAdminClass dir from Kali to new user:
+    sudo cp -r ~/Projects/LinuxAdminClass/ "/home/${newuser}/Projects/"
+
+    # Own the whole home directory
+    sudo chown -R "${newuser}:${newuser}" "/home/${newuser}"
 }
 
 ##################################################################################
@@ -286,7 +295,7 @@ function securewv-15-ctf(){
     
         # Change to the Directory and move things around.
         cd ~/Projects/SecureWV-CTF
-        cat CTF_bash_aliases >> ~/.bash_aliases
+        cat ~/Projects/SecureWV-CTF/CTF_bash_aliases >> ~/.bash_aliases
         chmod u+x startjuiceshop.sh
         source ~/.bash_aliases
     fi
@@ -388,7 +397,7 @@ do
             install-pdtm
             ;;
 	[8])
-            add-secondary-user
+            add_secondary_user
             ;;
         [Rr])
             sudo reboot
