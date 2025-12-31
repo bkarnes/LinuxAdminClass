@@ -200,6 +200,9 @@ function install-docker(){
 ##  Add a user:
 ##################################################################################
 add-secondary-user() {
+    echo "Before setting up a new user, we need to update the kali user:"
+    passwd
+
     echo "Setting up a new user:"
     read -rp "What is the New User's name? " newuser
     # Ensure we have a name
@@ -249,6 +252,9 @@ EOF
 
     # Own the whole home directory
     sudo chown -R "${newuser}:${newuser}" "/home/${newuser}"
+    
+    # Lock the kali user for after reboot:
+    sudo passwd -l kali
     
     # Reboot the VM:
     echo "Done. Will now reboot."
@@ -406,28 +412,28 @@ do
     
     case $choice in
     	[1])
+            add-secondary-user
+            ;;
+    	[2])
     	    cli-logging
     	    ;;
-	[2])
-            update-vm
-            ;;
-	[3])
+    	[3])
             install-docker
             ;;
-	[4])
+    	[4])
             install-netbird
             ;;
-	[5])
+    	[5])
             owasp_juiceshop
             ;;
-	[6])
+    	[6])
             blackhat-bash
             ;;
-	[7])
+    	[7])
             install-pdtm
             ;;
-	[8])
-            add-secondary-user
+    	[8])
+            update-vm
             ;;
         [Rr])
             sudo reboot
