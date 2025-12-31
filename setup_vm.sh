@@ -53,10 +53,6 @@ echo "
 ## Setting up CLI Logging:
 ##################################################################################
 function cli-logging(){
-
-    # Change the kali user's shell to BASH
-    chsh -s /bin/bash
-
     # Update the apt cache:
     echo "Updating the APT Cache:"
     sudo apt update
@@ -202,6 +198,9 @@ function install-docker(){
 add-secondary-user() {
     echo "Before setting up a new user, we need to update the kali user:"
     passwd
+
+    # Change the kali user's shell to BASH
+    chsh -s /bin/bash
 
     echo "Setting up a new user:"
     read -rp "What is the New User's name? " newuser
