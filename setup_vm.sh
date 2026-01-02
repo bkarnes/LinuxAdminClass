@@ -361,7 +361,7 @@ alias bhb_stoplab=\"cd ~/Projects/Black-Hat-Bash/lab/ && docker compose down --v
 >> ~/.bash_aliases
 
 # Let the user know that we're done."
-echo "We have finished setting up the Black Hat Bash Repo."
+echo "We have finished setting up the Black Hat Bash Repo.  Please source the .bashrc file to ensure the alises are active."
 
 }
 
@@ -404,8 +404,8 @@ do
     echo " 3) Install Docker.  Will reboot after update."
     echo " 4) Install netbird client."
     echo " 5) Set up the OWASP JuiceShop."
-    echo " 6) Set up Black Hat Bash docker images.  Will need a reboot."
-    echo " 7) Install Project Discovery Tools.  Will need a reboot."
+    echo " 6) Set up Black Hat Bash docker images."
+    echo " 7) Install Project Discovery Tools."
     echo " 8) Update VM.  Will reboot after update."
     echo " (R)eboot"
     echo " (Q)uit"
