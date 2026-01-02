@@ -14,7 +14,7 @@ After downloading the ISO installer image, you can follow the (Fresh Kali Instal
 
 
 ## Setup your VM:
-Once you've started your VM in VirtualBox and logged in as the kali user (kali:kali), you will need to run the following commands to get the setup script on your machine.
+Once you've installed VirtualBox and have logged in as the kali user (kali:kali) or built your VM from scratch, you will need to run the following commands to get the setup script on your machine.
 
 ```
 mkdir Projects
@@ -48,17 +48,17 @@ This will then open the setup menu (see below):
 |_______|_______|__| |__|_______|_______|                    
 
 
- Today is: Wed Dec 31 03:14:38 PM EST 2025
+ Today is: Fri Jan  2 04:49:54 PM EST 2026
  What can I do for you today?
 
- 1) Setup CLI logging and default directories.  Will require a reboot.
- 2) Update VM.  Will require a reboot.
- 3) Install Docker.  Will require a reboot.
+ 1) Add a new user.  Will reboot after update.
+ 2) Setup CLI logging and default directories.  Will reboot after update.
+ 3) Install Docker.  Will reboot after update.
  4) Install netbird client.
- 5) Set up SecureWV 15 CTF
+ 5) Set up the OWASP JuiceShop.
  6) Set up Black Hat Bash docker images.  Will need a reboot.
  7) Install Project Discovery Tools.  Will need a reboot.
- 8) Add a user (Optional)
+ 8) Update VM.  Will reboot after update.
  (R)eboot
  (Q)uit
 ```
