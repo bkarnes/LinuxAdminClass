@@ -1,10 +1,17 @@
 # LinuxAdminClass
-This is the main repo for the Linux Admin Class at BridgeValley.
+This is the main repo for my Linux Admin Class at Bridge Valley Community College.
 
-## Download a fresh Kali VM:
-[Get Kali - Pre-made VMs](https://www.kali.org/get-kali/#kali-virtual-machines)
+This script will help students set up their Virtual Machines we will be using in class.  Currently, the script is only set up for running on Kali, but I'm working on the Parrot version.
 
-Please note that the script is currently only set up for Kali.  I'm working on the Parrot version.
+## Download a fresh Kali VM (Windows and Linux):
+[Get Kali - Pre-made VMs](https://cdimage.kali.org/kali-2025.4/kali-linux-2025.4-virtualbox-amd64.7z)
+
+## Download the ISO (Mac M-Series Laptops):
+If you are using a MacOS Apple Silicon (M-Series) laptop, you will need to download the ISO file and build the VM from it.
+[Get Kali - Pre-made VMs](https://cdimage.kali.org/kali-2025.4/kali-linux-2025.4-installer-arm64.iso)
+
+After downloading the ISO installer image, you can follow the (Fresh Kali Install from ISO for Apple Silicon guide)[https://ethicalhacker.quest/Fresh_Kali_Install-ISO-AppleSilicon_VirtualBox.pdf] on my web site. 
+
 
 ## Setup your VM:
 Once you've started your VM in VirtualBox and logged in as the kali user (kali:kali), you will need to run the following commands to get the setup script on your machine.
