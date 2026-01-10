@@ -61,7 +61,7 @@ function cli-logging(){
 
     # Install rsyslog and other tools:
     echo "Installing rsyslog and some tools:"
-    sudo apt install -y rsyslog golang terminator cherrytree tmux screen libpcap-dev massdns flatpak python3-venv
+    sudo apt install -y rsyslog golang terminator cherrytree tmux screen libpcap-dev massdns flatpak python3-venv fastfetch
     echo "Done."
     
     # Set up the logging of our commands:
