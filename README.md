@@ -7,10 +7,7 @@ This script will help students set up their Virtual Machines we will be using in
 [Get Kali - Pre-made VMs](https://cdimage.kali.org/kali-2025.4/kali-linux-2025.4-virtualbox-amd64.7z)
 
 ## Download the ISO (Mac M-Series Laptops):
-If you are using a MacOS Apple Silicon (M-Series) laptop, you will need to download the ISO file and build the VM from it.
-[Get Kali - Pre-made VMs](https://cdimage.kali.org/kali-2025.4/kali-linux-2025.4-installer-arm64.iso)
-
-After downloading the ISO installer image, you can follow the [Fresh Kali Install from ISO for Apple Silicon guide](https://ethicalhacker.quest/Fresh_Kali_Install-ISO-AppleSilicon_VirtualBox.pdf) on my web site. 
+If you are using a MacOS Apple Silicon (M-Series) laptop, you will need to [download the ISO file](https://cdimage.kali.org/kali-2025.4/kali-linux-2025.4-installer-arm64.iso) and build the VM from it.  After downloading the ISO installer image, you can follow the [Fresh Kali Install from ISO for Apple Silicon guide](https://ethicalhacker.quest/Fresh_Kali_Install-ISO-AppleSilicon_VirtualBox.pdf) on my web site. 
 
 ## Virtual Manager:
 During the class, we will be using [VirtualBox](https://www.virtualbox.org/) as our Virtual Manager, but if you already have a Virtual Manager set up, then this script should still work within the Kali VM, but you will need to download the pre-made Kali image for the appropriate Virtual Manager.
