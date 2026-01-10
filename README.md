@@ -12,6 +12,8 @@ If you are using a MacOS Apple Silicon (M-Series) laptop, you will need to downl
 
 After downloading the ISO installer image, you can follow the (Fresh Kali Install from ISO for Apple Silicon guide)[https://ethicalhacker.quest/Fresh_Kali_Install-ISO-AppleSilicon_VirtualBox.pdf] on my web site. 
 
+## Virtual Manager:
+During the class, we will be using [VirtualBox](https://www.virtualbox.org/) as our Virtual Manager, but if you already have a Virtual Manager set up, then this script should still work within the Kali VM, but you will need to download the pre-made Kali image for the appropriate Virtual Manager.
 
 ## Setup your VM:
 Once you've installed VirtualBox and have logged in as the kali user (kali:kali) or built your VM from scratch, you will need to run the following commands to get the setup script on your machine.
