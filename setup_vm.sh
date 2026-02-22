@@ -149,7 +149,7 @@ function update-vm(){
 }
 
 ##################################################################################
-## Install Docker (Now using Podman):
+## Install Docker:
 ##################################################################################
 function install-docker(){
    # Remove Podman:
@@ -268,6 +268,8 @@ EOF
 ##################################################################################
 function install-netbird(){
     echo "This is where we install netbird client."
+    echo "What is the set up key?"
+    read setupkey
     #curl -fsSL https://pkgs.netbird.io/install.sh | sh
     
     # Add the repository:
@@ -284,10 +286,14 @@ function install-netbird(){
 
     #echo "Done.  Netbird is installed."
     
+    sudo netbird down
+    
+    sudo netbird up --setup-key $setupkey
+    
     # Reboot the VM:
     echo "Done. Will now reboot."
-    sleep 5
-    sudo reboot
+    #sleep 5
+    #sudo reboot
 }
 
 ##################################################################################
