@@ -286,14 +286,16 @@ function install-netbird(){
 
     #echo "Done.  Netbird is installed."
     
+    # Turn off netbird:
     sudo netbird down
     
+    # Bring back up with our Setup Key:
     sudo netbird up --setup-key $setupkey
     
     # Reboot the VM:
     echo "Done. Will now reboot."
-    #sleep 5
-    #sudo reboot
+    sleep 5
+    sudo reboot
 }
 
 ##################################################################################
