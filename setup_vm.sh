@@ -283,17 +283,17 @@ function install-netbird(){
 
     # Install the Clientl
     sudo apt-get install netbird netbird-ui
-
-    #echo "Done.  Netbird is installed."
     
     # Turn off netbird:
     sudo netbird down
     
     # Bring back up with our Setup Key:
     sudo netbird up --setup-key $setupkey
+        
+    #echo "Done.  Netbird is installed."
     
     # Reboot the VM:
-    echo "Done. Will now reboot."
+    echo "Done.  Netbird is installed.  Will now reboot."
     sleep 5
     sudo reboot
 }
