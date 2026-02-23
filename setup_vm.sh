@@ -289,8 +289,6 @@ function install-netbird(){
     
     # Bring back up with our Setup Key:
     sudo netbird up --setup-key $setupkey
-        
-    #echo "Done.  Netbird is installed."
     
     # Reboot the VM:
     echo "Done.  Netbird is installed.  Will now reboot."
