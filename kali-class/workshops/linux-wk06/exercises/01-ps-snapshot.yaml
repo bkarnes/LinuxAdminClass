@@ -1,0 +1,15 @@
+id: "01"
+title: "Snapshot of everything running"
+prompt: |
+  First step of any triage: what's running right now?
+
+  1. Save a full process listing (all processes, every terminal) to
+     ~/ps-all.txt
+  2. Your snapshot must include the header line and at least the system's
+     own processes.
+hints:
+  - "ps aux > ~/ps-all.txt  (the aux flags: all users, full format, with terminal-less processes)"
+verify:
+  script: "01-ps-snapshot.verify.sh"
+  timeout: 10
+on_success: "ps aux: the instant X-ray of your system."

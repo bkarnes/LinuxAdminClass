@@ -1,0 +1,42 @@
+# flag-manifest.yaml — capstone flag placement (Week 14)
+# seed-flags.sh reads this file and injects flags into running containers.
+# Idempotent: a flag is only written if its file is absent.
+#
+# Each flag value is a fixed class-wide CTF string (same for all students —
+# the anti-cheat comes from the per-student HMAC claim in the runner, not
+# from flag secrecy).
+#
+# container: docker container name as deployed by the BHB lab compose
+# path:      where the flag file is planted (root-readable only)
+# skill:     which week's skill unlocks it
+
+flags:
+  - name: FLAG_RECON
+    value: "FLAG{r3c0n_1s_n0t_0pt10n4l}"
+    container: p-web-01
+    path: /var/www/html/robots.txt
+    skill: recon (week 8) — found via web enumeration
+
+  - name: FLAG_FOOTHOLD
+    value: "FLAG{ftpd_b4ckd00r_f00th0ld}"
+    container: p-ftp-01
+    path: /root/flag.txt
+    skill: metasploit foothold (week 12) — vsftpd backdoor
+
+  - name: FLAG_PRIVESC
+    value: "FLAG{pr1v3sc_v14_m1sc0nf1g}"
+    container: kali-class-privesc
+    path: /root/flag.txt
+    skill: privesc (week 10) — SUID/nano misconfig
+
+  - name: FLAG_PIVOT
+    value: "FLAG{p1v0t_thr0ugh_jumpb0x}"
+    container: c-db-01
+    path: /root/flag.txt
+    skill: pivoting (weeks 11–12) — reach the private net
+
+  - name: FLAG_EXFIL
+    value: "FLAG{cr0wn_j3w3ls_3xf1ltr4t3d}"
+    container: c-backup-01
+    path: /opt/crown-jewels/FLAG.txt
+    skill: capstone exfiltration (week 14)

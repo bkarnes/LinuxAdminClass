@@ -1,0 +1,17 @@
+id: "04"
+title: "Inspect before you install"
+prompt: |
+  Good admins check what a package will do before installing it.
+
+  Using apt (no sudo needed for these — they're read-only):
+  1. Show detailed info about the 'tree' package and save it to
+     ~/tree-info.txt
+  2. List its dependencies as recorded by apt, appending the dependency
+     line to ~/tree-info.txt
+hints:
+  - "apt show tree > ~/tree-info.txt"
+  - "Append the depends line: apt show tree | grep ^Depends >> ~/tree-info.txt"
+verify:
+  script: "04-apt-show.verify.sh"
+  timeout: 15
+on_success: "Read before install: version, size, dependencies — informed decisions."

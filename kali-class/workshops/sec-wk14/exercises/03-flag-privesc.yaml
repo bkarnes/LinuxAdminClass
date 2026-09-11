@@ -1,0 +1,17 @@
+id: "03"
+title: "FLAG_PRIVESC — root on the privesc box"
+prompt: |
+  Week 10 taught you three ways up. Use any of them on
+  kali-class-privesc (SSH localhost:2222, intern:intern123).
+
+  1. Get a root shell (SUID nanohelp, sudo find, or writable /etc/passwd)
+  2. cat /root/flag.txt
+  3. Save the flag line to ~/kali-class-work/sec-wk14/flag-3.txt
+  4. Claim it: kali-class stamp sec-wk14 flag-privesc
+hints:
+  - "ssh -p 2222 intern@127.0.0.1, then any week-10 escalation vector."
+  - "Fastest: sudo find . -exec /bin/sh \\; (passwordless for intern)"
+verify:
+  script: "03-flag-privesc.verify.sh"
+  timeout: 60
+on_success: "FLAG_PRIVESC claimed. Any of three roads led to root."

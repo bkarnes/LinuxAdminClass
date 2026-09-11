@@ -1,0 +1,21 @@
+id: "03"
+title: "Wireshark filter drills"
+prompt: |
+  Wireshark: the analyst's microscope. Practice with filters.
+
+  1. Open your week 11 capture in Wireshark: wireshark -r
+     ~/kali-class-work/sec-wk11/ftp-capture.pcap
+  2. Apply the filter: ftp
+  3. Apply a second filter showing only the PASS command frames:
+     ftp.request.command == "PASS"
+  4. Save evidence: export the filtered packet list summary to
+     ~/kali-class-work/sec-wk11/wireshark-notes.txt
+     (a few lines describing what you saw + the filters you used)
+  5. Stamp: kali-class stamp sec-wk11 wireshark
+hints:
+  - "Display filters go in the bar: 'ftp' then 'ftp.request.command == \"PASS\"'."
+  - "Your notes file just needs both filter strings and what they showed."
+verify:
+  script: "03-wireshark-filters.verify.sh"
+  timeout: 30
+on_success: "Display filters: pull the interesting frames out of thousands."

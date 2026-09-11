@@ -1,0 +1,16 @@
+id: "04"
+title: "Ask the journal"
+prompt: |
+  journalctl is systemd's memory — every service's logs, queryable.
+
+  1. Show the last 20 journal entries overall and save to
+     ~/journal-recent.txt
+  2. Show journal entries ONLY for the ssh unit and save to
+     ~/journal-ssh.txt
+hints:
+  - "journalctl -n 20 --no-pager > ~/journal-recent.txt"
+  - "journalctl -u ssh -n 20 --no-pager > ~/journal-ssh.txt  (may need sudo)"
+verify:
+  script: "04-journalctl.verify.sh"
+  timeout: 20
+on_success: "journalctl -u <unit>: instant service history."

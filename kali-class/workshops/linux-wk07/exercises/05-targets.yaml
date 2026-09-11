@@ -1,0 +1,20 @@
+id: "05"
+title: "Targets — the modern runlevel (capstone)"
+prompt: |
+  Runlevels became targets. Know yours.
+
+  1. Save your current/default target to
+     ~/kali-class-work/linux-wk07/target.txt
+  2. List the available targets and save to
+     ~/kali-class-work/linux-wk07/targets-list.txt
+  3. Read the mapping: runlevel 3 ≈ multi-user.target, runlevel 5 ≈
+     graphical.target. Record which target corresponds to YOUR default in
+     the last line of target.txt (append 'equivalent: runlevel N').
+hints:
+  - "systemctl get-default > ~/kali-class-work/linux-wk07/target.txt"
+  - "systemctl list-units --type=target > .../targets.txt"
+  - "If your default is graphical.target, append: echo 'equivalent: runlevel 5' >> .../target.txt"
+verify:
+  script: "05-targets.verify.sh"
+  timeout: 15
+on_success: "Default target + its runlevel equivalent — boot sequence fluency."

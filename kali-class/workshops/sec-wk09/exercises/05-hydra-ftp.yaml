@@ -1,0 +1,18 @@
+id: "05"
+title: "Online brute force: FTP against p-ftp-01 (capstone)"
+prompt: |
+  Same technique, different service. p-ftp-01 (172.16.10.11) runs vsftpd
+  and one account has a weak password: anonymous or ftpuser:ftp123.
+
+  1. Run hydra FTP:
+     hydra -l ftpuser -P ~/kali-class-work/sec-wk09/passwords.txt 172.16.10.11 -t 4 ftp
+     (add 'ftp123' to your passwords file)
+  2. Save output to ~/kali-class-work/sec-wk09/hydra-ftp.txt
+  3. Stamp: kali-class stamp sec-wk09 hydra-ftp
+hints:
+  - "FTP module: just end the hydra command with 'ftp'."
+  - "If ftpuser:ftp123 fails, try -l anonymous with an empty password file entry."
+verify:
+  script: "05-hydra-ftp.verify.sh"
+  timeout: 180
+on_success: "FTP credentials harvested. Two services, same attack class."

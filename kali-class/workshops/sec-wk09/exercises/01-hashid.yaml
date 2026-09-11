@@ -1,0 +1,17 @@
+id: "01"
+title: "Know your hashes"
+prompt: |
+  Before cracking, identify. The runner planted two hash files for YOU at
+  ~/kali-class-work/sec-wk09/seeded/ (md5-hashes.txt, sha512-hashes.txt).
+
+  1. Use hashid (or hash-identifier) on one hash from each file
+  2. Record your identifications in ~/kali-class-work/sec-wk09/hash-types.txt
+     (two lines: 'md5-hashes.txt: MD5' and 'sha512-hashes.txt: SHA-512')
+  3. Stamp: kali-class stamp sec-wk09 hashid
+hints:
+  - "hashid <hash-string> — piped from the file: hashid $(head -1 ~/kali-class-work/sec-wk09/seeded/md5-hashes.txt | cut -d: -f1)"
+  - "32 hex chars = MD5. 128 hex chars = SHA-512."
+verify:
+  script: "01-hashid.verify.sh"
+  timeout: 15
+on_success: "32 hex = MD5, 128 hex = SHA-512. You can eyeball hashes now."

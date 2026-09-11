@@ -1,0 +1,22 @@
+id: "02"
+title: "IR: unauthorized file modification"
+prompt: |
+  A grade file was changed outside change control. Restore and document.
+
+  1. Launch: docker run -d --name linux-ir-filetamper linux-ir-filetamper:1.0
+  2. Inspect: docker exec linux-ir-filetamper ls -l /srv/grades/final.csv
+     and: docker exec linux-ir-filetamper stat /srv/grades/final.csv
+  3. Remediate the three planted problems (inside the container):
+     docker exec linux-ir-filetamper chmod 600 /srv/grades/final.csv
+     docker exec linux-ir-filetamper chown root:root /srv/grades/final.csv
+     docker exec linux-ir-filetamper sh -c "sed -i '/MODIFIED/d' /srv/grades/final.csv"
+  4. Save your after-state evidence (ls -l output + a one-line risk note)
+     to ~/kali-class-work/sec-wk13/filetamper-findings.txt
+  5. Stamp: kali-class stamp sec-wk13 ir-filetamper
+hints:
+  - "Compare against the pristine baseline: /srv/grades/.baseline timestamp."
+  - "The tampering did three things: opened 777, flipped owner to nobody, appended a MODIFIED line."
+verify:
+  script: "02-ir-filetamper.verify.sh"
+  timeout: 60
+on_success: "Fixed: 600, root-owned, content restored. Change control matters."

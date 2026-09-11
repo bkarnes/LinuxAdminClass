@@ -1,0 +1,5 @@
+title: "Users, Groups, and Permissions"
+summary: "Who am I, who's on my system, who can touch what — and locking it down properly."
+week: 3
+phase: "linux-fundamentals"
+deps: ["linux-wk02"]

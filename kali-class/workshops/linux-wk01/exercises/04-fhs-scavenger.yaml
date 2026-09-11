@@ -1,0 +1,21 @@
+id: "04"
+title: "The Filesystem Hierarchy scavenger hunt"
+prompt: |
+  Linux has a map, and it's called the Filesystem Hierarchy Standard (FHS).
+  Let's prove you can navigate it.
+
+  Answer three questions by writing the ABSOLUTE path of the answer into a
+  single file at ~/fhs-answers.txt, one per line:
+
+  1. The directory that holds most of your system's configuration files.
+  2. The directory that holds the log files.
+  3. The directory that holds temporary files, often cleared on reboot.
+
+hints:
+  - "Think: where would 'passwd' live? Where would 'syslog' live?"
+  - "Configuration lives in /etc, logs in /var/log, and temp in /tmp."
+  - "echo '/etc' > ~/fhs-answers.txt — then append the other two with >>"
+verify:
+  script: "04-fhs-scavenger.verify.sh"
+  timeout: 10
+on_success: "You know the map: /etc for config, /var/log for logs, /tmp for temp."

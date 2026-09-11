@@ -1,0 +1,19 @@
+id: "03"
+title: "Peek at a big file, in pieces"
+prompt: |
+  Log files and config files are usually huge. Nobody cats a 2-million-line
+  file into their terminal on purpose.
+
+  Using the file /var/log/syslog (Kali has one after setup_vm.sh option 2 —
+  if yours is missing, create test data first: seq 1 1000 > ~/biglog.txt
+  and use THAT file for this exercise):
+
+  1. Show only the FIRST 5 lines, saving them to ~/head-out.txt
+  2. Show only the LAST 5 lines, saving them to ~/tail-out.txt
+hints:
+  - "head shows the start: head -n 5 <file> > ~/head-out.txt"
+  - "tail shows the end: tail -n 5 <file> > ~/tail-out.txt"
+verify:
+  script: "03-head-tail.verify.sh"
+  timeout: 10
+on_success: "head and tail — how you sample big logs without drowning."

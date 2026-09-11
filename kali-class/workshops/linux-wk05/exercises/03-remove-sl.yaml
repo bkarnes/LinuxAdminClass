@@ -1,0 +1,19 @@
+id: "03"
+title: "Remove cleanly — no orphans left behind"
+prompt: |
+  Removing packages is as important as installing them.
+
+  1. Install a throwaway package: sudo apt install -y sl
+     (the steam locomotive — tiny and harmless)
+  2. Confirm it's installed
+  3. Remove it AND its now-unneeded dependencies with ONE command:
+     sudo apt purge -y sl && sudo apt autoremove -y
+  4. Prove the removal: save the output of 'dpkg -l sl' to
+     ~/sl-removed.txt (it should show 'no packages found' / rc or un state)
+hints:
+  - "dpkg -l sl > ~/sl-removed.txt — 'un' in the first column means uninstalled."
+  - "purge removes config too, unlike remove. autoremove cleans orphans."
+verify:
+  script: "03-remove-sl.verify.sh"
+  timeout: 15
+on_success: "Install, remove, autoremove — a full package lifecycle with no leftovers."

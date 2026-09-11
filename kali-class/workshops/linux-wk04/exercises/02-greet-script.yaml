@@ -1,0 +1,19 @@
+id: "02"
+title: "Variables and input"
+prompt: |
+  Scripts that talk back are more useful than scripts that don't.
+
+  Create ~/scripts/greet.sh which:
+  1. Asks the user: What is your name?
+  2. Reads the answer with read
+  3. Prints: Hello, <name>!
+
+  Test it yourself: ~/scripts/greet.sh, type any name, see the greeting.
+  The verifier runs it with a test name and checks the output.
+hints:
+  - "read -p \"What is your name? \" NAME"
+  - "echo \"Hello, $NAME!\""
+verify:
+  script: "02-greet-script.verify.sh"
+  timeout: 10
+on_success: "read + variables: your scripts are interactive now."

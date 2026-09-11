@@ -1,0 +1,19 @@
+id: "04"
+title: "Intercept with Burp (proxy basics)"
+prompt: |
+  Burp Suite sits between you and the app — seeing and changing everything.
+
+  1. Launch Burp: burpsuite (Kali menu works too). Accept defaults and set
+     the proxy listener on 127.0.0.1:8080 if not already.
+  2. Configure your browser (or curl) to use the proxy:
+     curl -x http://127.0.0.1:8080 http://172.16.10.10 -o
+     ~/kali-class-work/sec-wk08/burp-intercept.txt
+  3. In Burp's HTTP history you'll see the request — that's the point.
+  4. Stamp it: kali-class stamp sec-wk08 burp
+hints:
+  - "curl -x http://127.0.0.1:8080 is all curl needs to route through Burp."
+  - "The response body saved to the file proves the proxy path worked."
+verify:
+  script: "04-burp-proxy.verify.sh"
+  timeout: 30
+on_success: "Traffic through Burp: you now see what the app really sends."

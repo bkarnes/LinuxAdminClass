@@ -1,0 +1,5 @@
+title: "Working with Files and Directories"
+summary: "Create, copy, move, and find things; read files a piece at a time; master wildcards."
+week: 2
+phase: "linux-fundamentals"
+deps: ["linux-wk01"]

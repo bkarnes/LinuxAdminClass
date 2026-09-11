@@ -1,0 +1,19 @@
+id: "05"
+title: "Hold it right there (capstone)"
+prompt: |
+  Some packages must NOT be upgraded automatically. apt can pin them.
+
+  1. Install a small package to hold: sudo apt install -y cowsay
+     (if you already have it, fine — holding an installed package is the point)
+  2. Mark it as held: sudo apt-mark hold cowsay
+  3. Prove the hold: save 'apt-mark showhold' output to ~/held.txt
+     (it must list cowsay)
+  4. Now RELEASE it: sudo apt-mark unhold cowsay
+     (leave it unheld at the end — the verifier checks the full cycle)
+hints:
+  - "apt-mark hold cowsay && apt-mark showhold > ~/held.txt"
+  - "Finish with: apt-mark unhold cowsay"
+verify:
+  script: "05-apt-hold.verify.sh"
+  timeout: 15
+on_success: "Held, recorded, released: full control over upgrades."

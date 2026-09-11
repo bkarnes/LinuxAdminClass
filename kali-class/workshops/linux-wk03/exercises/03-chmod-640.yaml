@@ -1,0 +1,18 @@
+id: "03"
+title: "chmod by the numbers"
+prompt: |
+  Octal permissions: r=4, w=2, x=1. Add them up per position.
+  (rw- = 6, r-- = 4, r-x = 5, so rw-r--r-- = 644)
+
+  1. Create a file ~/secret-plan.txt
+  2. Set its permissions to: owner read-write, group read, others NOTHING
+     (the classic 640).
+  3. Prove it: save the permission string to ~/mode-answer.txt
+hints:
+  - "chmod 640 ~/secret-plan.txt"
+  - "Verify what you did: stat -c '%A' ~/secret-plan.txt > ~/mode-answer.txt"
+  - "640 means: owner rw (4+2), group r (4), others 0."
+verify:
+  script: "03-chmod-640.verify.sh"
+  timeout: 10
+on_success: "640 — the same mode many production log files wear."

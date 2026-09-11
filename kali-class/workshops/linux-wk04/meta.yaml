@@ -1,0 +1,5 @@
+title: "Bash Scripting I"
+summary: "Shebangs, variables, decisions, loops — and your first real admin automation script."
+week: 4
+phase: "linux-fundamentals"
+deps: ["linux-wk03"]

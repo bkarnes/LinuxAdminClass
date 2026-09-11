@@ -1,0 +1,19 @@
+id: "02"
+title: "Install your admin toolkit"
+prompt: |
+  Time to install real software.
+
+  1. Update your package index: sudo apt update
+  2. Install: htop, curl, and jq (one command can do all three)
+  3. Prove it: run each tool once and save proof:
+     - command --version output of htop into ~/toolkit-htop.txt
+     - command --version output of curl into ~/toolkit-curl.txt
+     - command --version output of jq into ~/toolkit-jq.txt
+hints:
+  - "sudo apt update && sudo apt install -y htop curl jq"
+  - "Version checks: htop --version, curl --version, jq --version"
+  - "htop --version > ~/toolkit-htop.txt (and likewise for the other two)"
+verify:
+  script: "02-toolkit.verify.sh"
+  timeout: 15
+on_success: "htop, curl, jq installed — a solid admin's starter kit."

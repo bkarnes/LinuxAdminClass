@@ -1,0 +1,5 @@
+title: "Network Attacks and MITM"
+summary: "Capture traffic, sniff credentials, ARP-spoof the lab, and detect your own attack."
+week: 11
+phase: "cyber-security"
+deps: ["sec-wk10"]

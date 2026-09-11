@@ -1,0 +1,21 @@
+id: "04"
+title: "IR: timeline reconstruction"
+prompt: |
+  Rebuild what happened, in order, from timestamps and logs.
+
+  1. Launch: docker run -d --name linux-ir-timeline linux-ir-timeline:1.0
+  2. Collect timestamps:
+     docker exec linux-ir-timeline ls -l --time-style=full-iso /incident/
+     docker exec linux-ir-timeline cat /var/log/applog
+  3. Find the hidden file: docker exec linux-ir-timeline ls -la /incident/
+  4. Write the ordered timeline (one event per line, chronological) to
+     ~/kali-class-work/sec-wk13/timeline.txt — each line must start with
+     its time (e.g. '03:10:00 ...'), and include the hidden payload's time.
+  5. Stamp: kali-class stamp sec-wk13 ir-timeline
+hints:
+  - "ls -la reveals the hidden .payload.sh (dot-prefixed)."
+  - "Order: a.txt → b.txt → c.txt → .payload.sh; the app log corroborates with config writes and the spawn."
+verify:
+  script: "04-ir-timeline.verify.sh"
+  timeout: 30
+on_success: "Chronology built from raw artifacts — the analyst's core skill."

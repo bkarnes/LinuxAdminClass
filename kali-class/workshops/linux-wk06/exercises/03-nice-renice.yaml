@@ -1,0 +1,22 @@
+id: "03"
+title: "Priority adjustments"
+prompt: |
+  nice values (-20 most favored, +19 least) control scheduling priority.
+
+  1. Start a background sleep process with a lowered priority:
+       nice -n 10 sleep 60 &
+  2. Check its nice value with ps and save the output to
+     ~/nice-check.txt
+  3. Then renice it UP to 5 (less niced): renice -n 5 -p <PID>
+  4. Record the old and new values, one per line, into
+     ~/kali-class-work/linux-wk06/renice.txt
+     (format: 'OLD: 10' and 'NEW: 5')
+  5. Clean up: kill that sleep process when done.
+hints:
+  - "nice -n 10 sleep 60 & — the & backgrounds it. Grab the PID from $!"
+  - "ps -o pid,ni,cmd -p <PID> > ~/nice-check.txt (ni = nice value)"
+  - "renice -n 5 -p <PID>; kill <PID>"
+verify:
+  script: "03-nice-renice.verify.sh"
+  timeout: 10
+on_success: "nice + renice: you can steer scheduling priorities by hand."

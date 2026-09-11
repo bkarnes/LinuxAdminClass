@@ -1,0 +1,16 @@
+id: "02"
+title: "Take a look around"
+prompt: |
+  Now that you know where you are, look at what's here.
+
+  Create a directory named practice in your home directory, then create an
+  empty file inside it called first.txt.
+
+  (You'll use two commands: one makes directories, one makes empty files.)
+hints:
+  - "mkdir makes directories. Try: mkdir ~/practice"
+  - "touch creates an empty file. Try: touch ~/practice/first.txt"
+verify:
+  script: "02-mkdir-touch.verify.sh"
+  timeout: 10
+on_success: "mkdir + touch — the two tools you'll use a thousand times."

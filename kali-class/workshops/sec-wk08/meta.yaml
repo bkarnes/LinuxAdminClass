@@ -1,0 +1,5 @@
+title: "Recon, Enumeration & Web App Security"
+summary: "Map the target network, fingerprint services, and find web vulnerabilities on the BHB lab."
+week: 8
+phase: "cyber-security"
+deps: ["linux-wk07"]

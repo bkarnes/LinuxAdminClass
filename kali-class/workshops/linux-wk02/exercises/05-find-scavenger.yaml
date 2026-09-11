@@ -1,0 +1,20 @@
+id: "05"
+title: "find — the scavenger hunt (your file, your token)"
+prompt: |
+  find is how admins locate anything, anywhere. This one is personal: the
+  runner planted a seed file with a token that belongs to YOU, and the
+  verifier checks you found YOURS.
+
+  1. A file named scavenger.txt was planted at
+     ~/kali-class-work/linux-wk02/seeded/scavenger.txt — open it and read
+     your seed-value.
+  2. Use find to locate that file by name, then copy its full content into
+     ~/found-seed.txt (cat with redirection counts as 'using find' if you
+     got there with find $(dirname ...) — but simplest: cp the file).
+hints:
+  - "Search by name anywhere under your home: find ~ -name 'scavenger.txt' 2>/dev/null"
+  - "Once located, copy it: cp <full-path-found> ~/found-seed.txt"
+verify:
+  script: "05-find-scavenger.verify.sh"
+  timeout: 10
+on_success: "find + your personal token: proof the hunt was yours."

@@ -1,0 +1,25 @@
+id: "05"
+title: "The backup script (capstone — sealed with YOUR token)"
+prompt: |
+  Real admin work: back up a directory safely, with your own fingerprint.
+
+  A seed directory was planted for you at
+  ~/kali-class-work/linux-wk04/seeded/ — it contains files that belong to
+  YOU (your token is inside; nobody else's will match).
+
+  Write ~/scripts/backup.sh which:
+  1. Creates ~/backups/ if it doesn't exist
+  2. Archives the WHOLE seeded directory into
+     ~/backups/backup-YYYYMMDD.tar.gz  (tar -czf with $(date +%Y%m%d))
+  3. Prints the path of the archive it created
+
+  Then RUN it. The verifier opens your tarball and checks it contains YOUR
+  seed files — a friend's archive will not pass for you.
+hints:
+  - "mkdir -p ~/backups"
+  - "ARCHIVE=~/backups/backup-$(date +%Y%m%d).tar.gz"
+  - "tar -czf $ARCHIVE -C ~/kali-class-work/linux-wk04 seeded"
+verify:
+  script: "05-backup-script.verify.sh"
+  timeout: 20
+on_success: "A dated, compressed backup containing your own sealed token. Real admin work."

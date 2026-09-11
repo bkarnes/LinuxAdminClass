@@ -1,0 +1,19 @@
+id: "02"
+title: "Start, stop, restart — the service dance"
+prompt: |
+  Service lifecycle control. We practice with ssh (it's present and safe to
+  bounce).
+
+  Using sudo:
+  1. Restart the ssh service
+  2. Check it's running (active)
+  3. Record the 'Active:' line from its status into
+     ~/kali-class-work/linux-wk07/ssh-active.txt
+hints:
+  - "sudo systemctl restart ssh"
+  - "Verify: systemctl is-active ssh (should print: active)"
+  - "systemctl status ssh | grep Active > ~/kali-class-work/linux-wk07/ssh-active.txt"
+verify:
+  script: "02-restart-ssh.verify.sh"
+  timeout: 20
+on_success: "restart + verify-active: the service control loop, mastered."

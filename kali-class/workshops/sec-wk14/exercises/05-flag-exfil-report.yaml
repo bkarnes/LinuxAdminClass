@@ -1,0 +1,25 @@
+id: "05"
+title: "FLAG_EXFIL + the pentest report (capstone)"
+prompt: |
+  Last flag, then the report. Two deliverables.
+
+  1. Exfiltrate: from your pivot position, read the crown jewels on
+     c-backup-01 (10.1.0.13):
+     cat /opt/crown-jewels/FLAG.txt
+     Save the flag line to ~/kali-class-work/sec-wk14/flag-5.txt
+  2. Claim it: kali-class stamp sec-wk14 flag-exfil
+  3. Write the pentest report using ~/Projects/LinuxAdminClass/Machine_Template.md
+     (modified for this capstone: Kill Chain Narrative + Flags Captured
+     sections). Save it as
+     ~/kali-class-work/sec-wk14/capstone-report.md
+     Fill in: OS/web-tech, IPs, users/creds, nmap results, enumeration,
+     privesc, kill-chain narrative, flags captured, takeaways.
+  4. Stamp: kali-class stamp sec-wk14 capstone-report
+hints:
+  - "c-backup-01 is at 10.1.0.13 — reachable from the jumpbox like c-db-01."
+  - "The template is at ~/Projects/LinuxAdminClass/Machine_Template.md — copy it and fill every section."
+  - "List all 5 flags with their names in the Flags Captured section."
+verify:
+  script: "05-flag-exfil-report.verify.sh"
+  timeout: 60
+on_success: "Crown jewels exfiltrated + full report. That's a pentest, start to finish."

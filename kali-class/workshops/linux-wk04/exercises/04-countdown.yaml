@@ -1,0 +1,19 @@
+id: "04"
+title: "Loops — count them all"
+prompt: |
+  Loops turn repetition into one line of code.
+
+  Create ~/scripts/countdown.sh which:
+  1. Takes a number as its first argument ($1)
+  2. If no argument is given, prints 'Usage: countdown.sh <number>' and
+     exits with code 1
+  3. Otherwise counts down from that number to 1, one per line
+
+  Test: ~/scripts/countdown.sh 3 should print 3, 2, 1 (three lines).
+hints:
+  - "for (( i=$1; i>=1; i-- )); do echo $i; done"
+  - "The usage check: if [ -z \"$1\" ]; then ... exit 1"
+verify:
+  script: "04-countdown.verify.sh"
+  timeout: 10
+on_success: "Argument parsing + a loop: scripts that do real work."

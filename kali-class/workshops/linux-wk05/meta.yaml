@@ -1,0 +1,5 @@
+title: "Package Management"
+summary: "Install, update, and remove software with apt; understand repositories and .deb files."
+week: 5
+phase: "linux-fundamentals"
+deps: ["linux-wk04"]

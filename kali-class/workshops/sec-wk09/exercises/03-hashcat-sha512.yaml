@@ -1,0 +1,22 @@
+id: "03"
+title: "Crack the SHA-512 set with hashcat"
+prompt: |
+  Faster cracking with the GPU-capable tool. Same hashes-you-own principle.
+
+  1. Convert the seeded SHA-512 file to a plain hash list:
+     cut -d: -f2 ~/kali-class-work/sec-wk09/seeded/sha512-hashes.txt >
+     ~/kali-class-work/sec-wk09/sha512-only.txt
+  2. Crack with hashcat mode 1800 (sha512 crypt) or 1700 (raw sha512):
+     hashcat -m 1700 -a 0 ~/kali-class-work/sec-wk09/sha512-only.txt
+     /usr/share/wordlists/rockyou.txt
+  3. Save results (--show) to
+     ~/kali-class-work/sec-wk09/sha512-cracked.txt
+  4. Stamp: kali-class stamp sec-wk09 hashcat-sha512
+hints:
+  - "The seeded hashes are RAW sha512 (not crypt) — use -m 1700."
+  - "john --wordlist=rockyou.txt --format=Raw-SHA512 also works if hashcat is fussy in the VM."
+  - "Results: hashcat -m 1700 ~/kali-class-work/sec-wk09/sha512-only.txt --show > <results-file>"
+verify:
+  script: "03-hashcat-sha512.verify.sh"
+  timeout: 180
+on_success: "SHA-512 + hashcat: the faster hammer for bigger nails."

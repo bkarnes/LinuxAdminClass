@@ -1,0 +1,5 @@
+title: "Intro to Linux and the Command Line"
+summary: "Find your footing: navigate the filesystem, read the manual, and learn the layout of your Kali system."
+week: 1
+phase: "linux-fundamentals"
+deps: []

@@ -1,0 +1,20 @@
+id: "01"
+title: "FLAG_RECON — the hidden directive"
+prompt: |
+  The kill chain starts with recon. p-web-01 (172.16.10.10) left a flag
+  hidden in its web root for diligent enumerators.
+
+  1. Confirm the lab is up: kali-class setup-bhb
+  2. Enumerate the web root (gobuster/dirb, or check well-known files)
+  3. Find the flag in robots.txt:
+     curl -s http://172.16.10.10/robots.txt
+  4. Save the flag line (FLAG{...}) to
+     ~/kali-class-work/sec-wk14/flag-1.txt
+  5. Claim it: kali-class stamp sec-wk14 flag-recon
+hints:
+  - "robots.txt is the classic first stop: curl http://172.16.10.10/robots.txt"
+  - "Copy the full FLAG{...} line into flag-1.txt."
+verify:
+  script: "01-flag-recon.verify.sh"
+  timeout: 30
+on_success: "FLAG_RECON claimed. Recon is, in fact, not optional."

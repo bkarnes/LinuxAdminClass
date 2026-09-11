@@ -1,0 +1,21 @@
+id: "01"
+title: "Build a filing cabinet"
+prompt: |
+  Admins live and die by tidy directory trees.
+
+  Build this structure inside your home directory (exactly):
+
+      ~/company/
+        docs/
+        photos/
+        reports/2026/
+
+  Then create an empty file: ~/company/docs/notes.txt
+hints:
+  - "mkdir makes one directory at a time, but -p lets you nest them in one shot."
+  - "mkdir -p ~/company/reports/2026 creates everything missing along the way."
+  - "touch ~/company/docs/notes.txt"
+verify:
+  script: "01-tree.verify.sh"
+  timeout: 10
+on_success: "One mkdir -p and one touch. A tidy tree is a happy tree."

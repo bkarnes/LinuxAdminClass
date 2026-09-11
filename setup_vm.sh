@@ -90,6 +90,12 @@ function cli-logging(){
     
     # Restart the rsyslog service:
     sudo systemctl restart rsyslog
+
+    # Ensure the command log exists and is readable by students. The lab
+    # verifiers grep this file AS THE STUDENT, so rsyslog's default
+    # create mode (0640 root:adm) would make it invisible to them.
+    sudo touch /var/log/commands.log
+    sudo chmod 0644 /var/log/commands.log
     
     # Finished.
     echo "Finished setting up the CLI Logging. Now, let's set up the default directories."
@@ -395,6 +401,26 @@ alias otherhttpx=\"/usr/bin/httpx\""\
 }
 
 ##################################################################################
+## Install kali-class labs (NodeSchool-style interactive workshops):
+##################################################################################
+install-kali-class() {
+    echo "Installing kali-class labs (NodeSchool-style interactive labs)."
+
+    if [ ! -d "$HOME/Projects/LinuxAdminClass/kali-class" ]; then
+        echo "Could not find ~/Projects/LinuxAdminClass/kali-class."
+        echo "Make sure the LinuxAdminClass repo is cloned to ~/Projects/LinuxAdminClass."
+        return 1
+    fi
+
+    cd "$HOME/Projects/LinuxAdminClass/kali-class" || return 1
+    chmod u+x install.sh
+    ./install.sh
+
+    echo
+    echo "kali-class labs installed.  Run 'kali-class' to register and begin."
+}
+
+##################################################################################
 ## Start WhileLoop for Menu:
 ##################################################################################
 while true
@@ -413,6 +439,7 @@ do
     echo " 6) Set up Black Hat Bash docker images."
     echo " 7) Install Project Discovery Tools."
     echo " 8) Update VM.  Will reboot after update."
+    echo " 9) Install kali-class labs (interactive workshops)."
     echo " (R)eboot"
     echo " (Q)uit"
     read choice
@@ -441,6 +468,9 @@ do
             ;;
     	[8])
             update-vm
+            ;;
+    	[9])
+            install-kali-class
             ;;
         [Rr])
             sudo reboot

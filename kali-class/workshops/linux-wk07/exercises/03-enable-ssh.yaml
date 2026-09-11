@@ -1,0 +1,16 @@
+id: "03"
+title: "Enable at boot — persistence matters"
+prompt: |
+  A service that runs now but dies at reboot isn't managed yet.
+
+  1. Enable the ssh service for future boots: sudo systemctl enable ssh
+  2. Prove it: save 'systemctl is-enabled ssh' output to
+     ~/kali-class-work/linux-wk07/ssh-enabled.txt
+  3. BONUS (optional, keep if you like): confirm the symlink it created
+     under /etc/systemd/system/multi-user.target.wants/ exists.
+hints:
+  - "sudo systemctl enable ssh && systemctl is-enabled ssh > ~/kali-class-work/linux-wk07/ssh-enabled.txt"
+verify:
+  script: "03-enable-ssh.verify.sh"
+  timeout: 15
+on_success: "Enabled: ssh will greet every boot from now on."

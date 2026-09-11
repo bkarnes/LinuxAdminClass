@@ -1,0 +1,5 @@
+title: "Capstone Pentest: Report + CTF Flags"
+summary: "Run the full kill chain against the BHB lab: recon → foothold → privesc → pivot → exfil, claim 5 flags, write the report."
+week: 14
+phase: "cyber-security"
+deps: ["sec-wk13"]

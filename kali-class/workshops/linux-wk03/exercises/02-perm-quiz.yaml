@@ -1,0 +1,22 @@
+id: "02"
+title: "Read a permission string"
+prompt: |
+  Decode the runes. Run this and look at its permission column:
+
+      ls -l /etc/passwd
+
+  A permission string like -rw-r--r-- is really four parts:
+  [file type][owner][group][others]
+
+  Create a file ~/perm-quiz.txt containing EXACTLY three lines:
+    1. The permission string of /etc/passwd (just that string, e.g. -rw-r--r--)
+    2. What the owner can do (type one of: read only / read-write / full control)
+    3. What group members can do (same choices)
+hints:
+  - "stat -c '%A' /etc/passwd prints just the permission string."
+  - "Position 1 is the file type (- for regular file). Chars 2-4 are owner, 5-7 group, 8-10 others."
+  - "For -rw-r--r--: owner = read-write, group = read only."
+verify:
+  script: "02-perm-quiz.verify.sh"
+  timeout: 10
+on_success: "You can now read ls -l output at a glance — an admin's daily bread."

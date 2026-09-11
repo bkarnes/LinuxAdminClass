@@ -1,0 +1,20 @@
+id: "03"
+title: "Decisions, decisions"
+prompt: |
+  if/else is how scripts get smart.
+
+  Create ~/scripts/diskcheck.sh which:
+  1. Checks the usage percent of your root filesystem
+  2. If usage is greater than or equal to 0 (any usage), prints:
+     Usage is <P>%, status: OK
+     (We test the logic, not a full disk! Any correct comparison counts.)
+  3. If the check fails (disk unreadable), the script must exit with a
+     non-zero code.
+hints:
+  - "Get the usage: df / | awk 'NR==2 {print $5}' | tr -d '%'"
+  - "if [ \"$USE\" -ge 0 ]; then echo \"Usage is $USE%, status: OK\"; fi"
+  - "exit 1 inside an else branch handles the failure case."
+verify:
+  script: "03-diskcheck.verify.sh"
+  timeout: 15
+on_success: "Conditionals + exit codes: the backbone of monitoring scripts."

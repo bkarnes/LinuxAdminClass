@@ -1,0 +1,5 @@
+title: "System Services and the Boot Process"
+summary: "systemctl, enabling services, journalctl, and how targets/runlevels organize boot."
+week: 7
+phase: "linux-fundamentals"
+deps: ["linux-wk06"]

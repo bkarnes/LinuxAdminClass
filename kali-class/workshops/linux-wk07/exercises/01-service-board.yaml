@@ -1,0 +1,15 @@
+id: "01"
+title: "Read the service board"
+prompt: |
+  systemd is the service manager. First, learn to read it.
+
+  1. List ALL loaded services and save to ~/services-list.txt
+  2. Check the status of the ssh service (Kali usually has it) and save
+     the status output to ~/ssh-status.txt
+hints:
+  - "systemctl list-units --type=service > ~/services-list.txt"
+  - "systemctl status ssh > ~/ssh-status.txt 2>&1 (add 2>&1: status may print to stderr)"
+verify:
+  script: "01-service-board.verify.sh"
+  timeout: 15
+on_success: "systemctl list + status: your service dashboard."

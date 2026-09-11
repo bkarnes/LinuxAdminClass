@@ -1,0 +1,23 @@
+id: "02"
+title: "The runaway process drill"
+prompt: |
+  Someone left a process spinning. Find it, kill it.
+
+  The runner planted a 'runaway' script for this workshop (it's harmless —
+  a sleep loop). Do this:
+
+  1. Find the runaway: look for a process running something like
+     'yes > /dev/null' started by your user (ps aux | grep runaway is fine)
+  2. Kill it by PID: kill <PID>
+  3. If it won't die, escalate: kill -9 <PID>
+  4. Record the PID you killed and the signal you used, one per line, into
+     ~/kali-class-work/linux-wk06/killed.txt
+     (format: 'PID: 12345' and 'SIGNAL: TERM' or 'SIGNAL: KILL')
+hints:
+  - "Find it: ps aux | grep -i runaway | grep -v grep"
+  - "kill sends SIGTERM (15) by default — try that first, escalate to -9 if needed."
+  - "echo 'PID: 1234' > ~/kali-class-work/linux-wk06/killed.txt; echo 'SIGNAL: TERM' >> same file"
+verify:
+  script: "02-kill-runaway.verify.sh"
+  timeout: 10
+on_success: "You found it, killed it, documented it. Triage complete."

@@ -1,0 +1,18 @@
+id: "01"
+title: "Sweep the network"
+prompt: |
+  Before touching anything: know the battlefield.
+
+  1. Deploy the lab if you haven't: kali-class setup-bhb
+  2. Run a fast ping sweep (host discovery) of the public subnet
+     172.16.10.0/24 and save it to
+     ~/kali-class-work/sec-wk08/nmap-sweep.txt
+  3. Stamp it: kali-class stamp sec-wk08 nmap-sweep
+hints:
+  - "Host discovery without port scanning: nmap -sn 172.16.10.0/24"
+  - "Save output: nmap -sn 172.16.10.0/24 > ~/kali-class-work/sec-wk08/nmap-sweep.txt"
+  - "You should find at least 4 hosts up."
+verify:
+  script: "01-nmap-sweep.verify.sh"
+  timeout: 30
+on_success: "Four public targets on the map. Recon is not optional."

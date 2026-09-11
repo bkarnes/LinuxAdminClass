@@ -1,0 +1,22 @@
+id: "02"
+title: "Crack the MD5 set with john"
+prompt: |
+  Your MD5 hashes, your wordlist, your crack.
+
+  1. The seeded file is in user:hash format. Convert to a plain hash file:
+     cut -d: -f2 ~/kali-class-work/sec-wk09/seeded/md5-hashes.txt >
+     ~/kali-class-work/sec-wk09/md5-only.txt
+  2. Crack with john (raw MD5):
+     john --format=Raw-MD5 --wordlist=/usr/share/wordlists/rockyou.txt
+     ~/kali-class-work/sec-wk09/md5-only.txt
+  3. Save the results (john --show) to
+     ~/kali-class-work/sec-wk09/md5-cracked.txt
+  4. Stamp: kali-class stamp sec-wk09 john-md5
+hints:
+  - "john --format=Raw-MD5 --wordlist=/usr/share/wordlists/rockyou.txt <hashfile>"
+  - "Show cracked: john --show --format=Raw-MD5 <hashfile> > <results-file>"
+  - "Kali ships rockyou at /usr/share/wordlists/rockyou.txt (gunzip rockyou.txt.gz if needed)."
+verify:
+  script: "02-john-md5.verify.sh"
+  timeout: 120
+on_success: "Four MD5s turned into four passwords. Offline attack, zero alerts."

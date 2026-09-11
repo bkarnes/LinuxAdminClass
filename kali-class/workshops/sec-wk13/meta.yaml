@@ -1,0 +1,5 @@
+title: "Blue Team / Incident Response"
+summary: "Investigate four real incident containers: brute-force logs, tampered files, malicious scripts, and timeline forensics."
+week: 13
+phase: "cyber-security"
+deps: ["sec-wk12"]

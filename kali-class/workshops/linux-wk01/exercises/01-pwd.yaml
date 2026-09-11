@@ -1,0 +1,14 @@
+id: "01"
+title: "Where in the world are you?"
+prompt: |
+  The first thing any admin does when dropped into an unfamiliar shell is
+  ask: where am I?
+
+  Print the absolute path of the directory you are currently in.
+hints:
+  - "There's a command that literally stands for 'print working directory'."
+  - "It's just two letters: pwd"
+verify:
+  script: "01-pwd.verify.sh"
+  timeout: 10
+on_success: "pwd prints your working directory. Every journey starts with $PWD."

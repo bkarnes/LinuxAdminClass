@@ -1,0 +1,21 @@
+id: "05"
+title: "The locked-down shared directory (capstone)"
+prompt: |
+  Classic admin task: a shared folder a team can write to, but the rest of
+  the world can't even list.
+
+  Using sudo:
+  1. Create /srv/shared
+  2. Create a group: sudo groupadd projectx
+  3. Make the directory: owned by root, group projectx, mode 770
+     (sudo chown root:projectx /srv/shared && sudo chmod 770 /srv/shared)
+  4. Prove your work: save ls -ld output of /srv/shared to
+     ~/shared-check.txt
+hints:
+  - "sudo mkdir -p /srv/shared"
+  - "sudo chown root:projectx /srv/shared — colon separates owner and group."
+  - "770 = owner rwx, group rwx, others nothing. Then ls -ld /srv/shared > ~/shared-check.txt"
+verify:
+  script: "05-shared-dir.verify.sh"
+  timeout: 10
+on_success: "A real shared workspace: right people in, everyone else locked out."

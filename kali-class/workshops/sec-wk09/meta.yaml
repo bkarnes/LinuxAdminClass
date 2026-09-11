@@ -1,0 +1,5 @@
+title: "Password Attacks"
+summary: "Identify hash types, crack offline hashes that belong to you, and brute-force the lab services."
+week: 9
+phase: "cyber-security"
+deps: ["sec-wk08"]

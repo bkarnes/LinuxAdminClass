@@ -1,0 +1,18 @@
+id: "01"
+title: "Hello, script"
+prompt: |
+  Every script starts with a first script.
+
+  1. Create ~/scripts/hello.sh (create the directory if needed)
+  2. The script must print exactly: Hello from my first script
+  3. Make it executable (chmod +x) and RUN it — the verifier checks the
+     script file, its executable bit, AND evidence it ran (output appears
+     in your command log).
+hints:
+  - "First line of the file: #!/bin/bash"
+  - "Second line: echo \"Hello from my first script\""
+  - "chmod +x ~/scripts/hello.sh && ~/scripts/hello.sh"
+verify:
+  script: "01-hello-script.verify.sh"
+  timeout: 10
+on_success: "Shebang + chmod +x + run: the full script lifecycle."

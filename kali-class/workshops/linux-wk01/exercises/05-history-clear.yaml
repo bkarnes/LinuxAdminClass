@@ -1,0 +1,21 @@
+id: "05"
+title: "Learn from your history"
+prompt: |
+  Your shell remembers what you type — and so does the system.
+
+  Two things to do:
+
+  1. View the list of commands you've run this session using the built-in
+     command that shows your shell history.
+
+  2. Then clear the screen with the command whose only job is to clear
+     the screen (not exit it!).
+
+  The verifier will check your command log (set up in class) for both.
+hints:
+  - "Shell history is shown by a command literally named history."
+  - "The screen-clearing command is clear. (Bonus: Ctrl+L does the same thing.)"
+verify:
+  script: "05-history-clear.verify.sh"
+  timeout: 10
+on_success: "history + clear — review your past, then enjoy a clean slate."

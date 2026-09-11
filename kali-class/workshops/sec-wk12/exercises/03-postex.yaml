@@ -1,0 +1,19 @@
+id: "03"
+title: "Post-exploitation: know your shell"
+prompt: |
+  You have a shell on p-ftp-01. What does the box look like from inside?
+
+  From the backdoor shell (or a re-run of the exploit), collect:
+
+    uname -a
+    id
+    ip addr
+  Save all three outputs to ~/kali-class-work/sec-wk12/postex-info.txt
+  Stamp: kali-class stamp sec-wk12 postex
+hints:
+  - "The vsftpd backdoor shell is minimal — pipe commands: id; uname -a"
+  - "Copy-paste the shell transcript into the file."
+verify:
+  script: "03-postex.verify.sh"
+  timeout: 90
+on_success: "Post-exploitation: the first three questions of any new shell."

@@ -1,0 +1,17 @@
+id: "04"
+title: "Resource inventory"
+prompt: |
+  What does this machine actually have?
+
+  Save each report to your home directory:
+  1. Disk space (human-readable): ~/resource-df.txt
+  2. Directory size of /var/log, summarized: ~/resource-du.txt
+  3. Memory usage: ~/resource-free.txt
+hints:
+  - "df -h > ~/resource-df.txt"
+  - "du -sh /var/log 2>/dev/null > ~/resource-du.txt (or du -sh /var/log/*)"
+  - "free -h > ~/resource-free.txt — keep the exact filenames from the prompt."
+verify:
+  script: "04-resources.verify.sh"
+  timeout: 10
+on_success: "df, du, free — your three gauges for disk, directories, and RAM."

@@ -1,0 +1,23 @@
+id: "04"
+title: "FLAG_PIVOT — into the private network"
+prompt: |
+  The private net (10.1.0.0/24) hides behind the jumpbox
+  (p-jumpbox-01, 172.16.10.13, SSH root:toor).
+
+  1. SSH in: ssh root@172.16.10.13 (password: toor)
+  2. From the jumpbox, probe the private side:
+     ping -c1 10.1.0.15  (c-db-01)
+  3. Use the jumpbox to reach c-db-01 and get the flag. Example paths:
+     ssh root@10.1.0.15 (if keys/creds allow), or
+     sshpass -p <pass> ssh root@10.1.0.15, or any pivot technique
+  4. Read /root/flag.txt on c-db-01 and save it to
+     ~/kali-class-work/sec-wk14/flag-4.txt
+  5. Claim it: kali-class stamp sec-wk14 flag-pivot
+hints:
+  - "The jumpbox can reach the private net you can't see from Kali."
+  - "If the db box needs creds, try root:root and root:toor (lab-grade)."
+  - "Alternative pivot: ssh -J root@172.16.10.13 root@10.1.0.15 (ProxyJump)."
+verify:
+  script: "04-flag-pivot.verify.sh"
+  timeout: 90
+on_success: "FLAG_PIVOT claimed. The dark network had a door, and you found the doorkeeper."

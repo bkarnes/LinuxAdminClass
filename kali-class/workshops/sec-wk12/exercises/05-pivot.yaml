@@ -1,0 +1,23 @@
+id: "05"
+title: "Pivot toward the private network (capstone)"
+prompt: |
+  The private net (10.1.0.0/24) is hidden behind the jumpbox. Explore the
+  pivot concept.
+
+  1. From your msf shell on p-ftp-01 (or any public box), try to see the
+     other side: cat /etc/hosts or route -n
+  2. Scan THROUGH the jumpbox: from the shell, probe a private IP:
+     (in shell) ping -c1 10.1.0.12 || echo "no route (expected: documented)"
+  3. Record your pivot analysis in
+     ~/kali-class-work/sec-wk12/pivot-notes.txt:
+       - what the route table showed
+       - why 10.1.0.x isn't directly reachable from Kali
+       - which public box WOULD route there (p-jumpbox-01)
+  4. Stamp: kali-class stamp sec-wk12 pivot
+hints:
+  - "route -n from the compromised shell shows which nets the box knows."
+  - "Pivot = using a compromised host as your relay into networks it can reach but you can't."
+verify:
+  script: "05-pivot.verify.sh"
+  timeout: 60
+on_success: "You understand WHY the private net is dark: no route — yet. Capstone week 14 fixes that."

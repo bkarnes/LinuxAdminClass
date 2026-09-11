@@ -1,0 +1,20 @@
+id: "05"
+title: "Job control — background, foreground, done (capstone)"
+prompt: |
+  Shells can juggle jobs. Learn the juggling.
+
+  1. Start a background job: sleep 300 &
+  2. List your jobs and save the output to ~/jobs-list.txt
+  3. Bring it to the foreground briefly, then suspend it with Ctrl+Z, then
+     background it again with bg — OR simply use jobs/kill directly.
+     Either way, end the job with: kill %1 (job spec!) — not by PID.
+  4. Save the evidence that it's gone: jobs output AFTER the kill into
+     ~/jobs-after.txt (it should be empty of that job).
+hints:
+  - "jobs > ~/jobs-list.txt (after starting sleep 300 &)"
+  - "kill %1 uses the job number, not the PID — that's the point of this drill."
+  - "jobs > ~/jobs-after.txt — the sleep job should be gone."
+verify:
+  script: "05-job-control.verify.sh"
+  timeout: 10
+on_success: "%1 vs PID: you now speak fluent job control."

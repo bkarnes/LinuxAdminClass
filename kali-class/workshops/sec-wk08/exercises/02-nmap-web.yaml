@@ -1,0 +1,16 @@
+id: "02"
+title: "Fingerprint the web server"
+prompt: |
+  What's actually running on p-web-01 (172.16.10.10)?
+
+  1. Version + service scan of its web ports, saving the output to
+     ~/kali-class-work/sec-wk08/nmap-web-01.txt
+     (target: 172.16.10.10, ports 80,443 with -sV)
+  2. Stamp it: kali-class stamp sec-wk08 nmap-web
+hints:
+  - "nmap -sV -p 80,443 172.16.10.10"
+  - "Add -oN to save the normal output: nmap -sV -p 80,443 -oN ~/kali-class-work/sec-wk08/nmap-web.txt 172.16.10.10"
+verify:
+  script: "02-nmap-web.verify.sh"
+  timeout: 60
+on_success: "Service fingerprinting: knowing WHAT before probing HOW."

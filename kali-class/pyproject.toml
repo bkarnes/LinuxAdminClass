@@ -1,0 +1,16 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "kali-class"
+version = "0.1.0"
+description = "NodeSchool-style interactive labs for the LinuxAdminClass course"
+requires-python = ">=3.10"
+dependencies = ["PyYAML>=6.0"]
+
+[project.scripts]
+kali-class = "kali_class.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["kali_class*"]

@@ -1,0 +1,21 @@
+id: "04"
+title: "sudo vs su — act like root, briefly"
+prompt: |
+  sudo runs one command as root; su switches you INTO root. Modern admins
+  prefer sudo.
+
+  Using sudo:
+  1. Create a file owned by root: sudo touch /opt/root-made-this.txt
+  2. Try to append a line to it WITHOUT sudo and observe the denial
+     (that's fine — no need to actually write).
+  3. Record what happened: put the word 'denied' (lowercase, alone) into
+     ~/sudo-experience.txt if you got a permission denied error, or 'worked'
+     if you somehow wrote without sudo.
+hints:
+  - "sudo touch /opt/root-made-this.txt (your password, then the command runs as root)."
+  - "echo test >> /opt/root-made-this.txt as a normal user → Permission denied."
+  - "echo denied > ~/sudo-experience.txt"
+verify:
+  script: "04-sudo-file.verify.sh"
+  timeout: 10
+on_success: "Least privilege in action: root made it, you couldn't touch it."

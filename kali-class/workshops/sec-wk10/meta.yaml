@@ -1,0 +1,5 @@
+title: "Privilege Escalation"
+summary: "Get a low-priv shell on the privesc target, enumerate, and escalate three different ways."
+week: 10
+phase: "cyber-security"
+deps: ["sec-wk09"]

@@ -1,0 +1,22 @@
+id: "01"
+title: "Sniff FTP credentials with tcpdump"
+prompt: |
+  FTP is plaintext. Watch it leak.
+
+  1. Start a capture of FTP traffic (port 21):
+     sudo tcpdump -i any -A -s 0 port 21 -c 30
+     -w ~/kali-class-work/sec-wk11/ftp-capture.pcap
+  2. While it runs, log into p-ftp-01 (172.16.10.11) with the credentials
+     you brute-forced in week 9 (ftpuser:ftp123) and list a directory.
+  3. Read the capture (or re-read the pcap: tcpdump -A -r <file> | grep USER)
+     and save evidence of USER/PASS lines to
+     ~/kali-class-work/sec-wk11/sniffed-creds.txt
+  4. Stamp: kali-class stamp sec-wk11 ftp-sniff
+hints:
+  - "Two terminals: one runs tcpdump, the other does ftp 172.16.10.11 and logs in."
+  - "The -A flag shows ASCII — USER and PASS lines are readable."
+  - "grep -E 'USER|PASS' on the capture output for the creds file."
+verify:
+  script: "01-ftp-sniff.verify.sh"
+  timeout: 60
+on_success: "Plaintext credentials plucked from the air. That's why we use SSH/SFTP."

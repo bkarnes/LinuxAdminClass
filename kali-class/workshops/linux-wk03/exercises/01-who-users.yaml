@@ -1,0 +1,19 @@
+id: "01"
+title: "Who are you? Who's here?"
+prompt: |
+  Before you can manage users, you need to read the user database.
+
+  1. Print your current username, your user ID, and the groups you belong
+     to (three separate commands).
+
+  2. Save a list of every user account on the system to ~/users-list.txt
+     by extracting ONLY usernames from the user database
+     (the file is colon-separated; usernames are field 1).
+hints:
+  - "whoami, id, groups — three one-word answers."
+  - "User database: /etc/passwd. Column 1, colon-separated."
+  - "cut -d: -f1 /etc/passwd > ~/users-list.txt"
+verify:
+  script: "01-who-users.verify.sh"
+  timeout: 10
+on_success: "You can read /etc/passwd like a pro now — field 1, colon-delimited."

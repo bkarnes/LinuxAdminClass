@@ -1,0 +1,23 @@
+id: "05"
+title: "Detect the MITM (defender drill, capstone)"
+prompt: |
+  Flip hats: detect the attack you just ran.
+
+  1. While an arpspoof/ettercap MITM is running (or from its saved output),
+     examine ARP tables for duplicates: one IP claimed by two MACs is the
+     giveaway.
+  2. Capture your detection evidence:
+     sudo arpwatch -i <iface> -f ~/kali-class-work/sec-wk11/arpwatch.dat &
+     (or manual: ip neigh; arp -a) — save to
+     ~/kali-class-work/sec-wk11/detection-notes.txt including:
+       - the duplicate MAC evidence
+       - the command(s) that revealed it
+       - one mitigation (e.g. DAI, static ARP, 802.1X)
+  3. Stamp: kali-class stamp sec-wk11 mitm-detect
+hints:
+  - "ip neigh | sort shows your neighbor table — look for an IP with changing MAC."
+  - "Detection tools: arpwatch (logs flips), XArp (GUI)."
+verify:
+  script: "05-mitm-detect.verify.sh"
+  timeout: 30
+on_success: "Attacker then defender: you can both run and recognize this attack."

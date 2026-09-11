@@ -1,0 +1,16 @@
+id: "03"
+title: "Directory enumeration with gobuster"
+prompt: |
+  Web servers hide things in plain sight. Brute-force the directories.
+
+  1. Run gobuster (or dirb) against p-web-02 (172.16.10.12) using the
+     common-words wordlist, saving output to
+     ~/kali-class-work/sec-wk08/gobuster-web02.txt
+  2. Stamp it: kali-class stamp sec-wk08 gobuster
+hints:
+  - "gobuster dir -u http://172.16.10.12 -w /usr/share/wordlists/dirb/common.txt -o ~/kali-class-work/sec-wk08/gobuster-web02.txt"
+  - "The dirb wordlists ship with Kali (dirb package). dirb http://172.16.10.12 works too (different output format)."
+verify:
+  script: "03-gobuster.verify.sh"
+  timeout: 60
+on_success: "Hidden paths found: the map of the app nobody published."

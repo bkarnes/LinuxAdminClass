@@ -1,0 +1,19 @@
+id: "01"
+title: "Get your low-priv shell"
+prompt: |
+  The privesc target (kali-class-privesc) is deployed with setup-bhb.
+  It runs SSH on localhost:2222 with user intern / password intern123.
+
+  1. SSH in: ssh -p 2222 intern@127.0.0.1 (password: intern123)
+  2. Confirm you're intern (whoami) and NOT root
+  3. Document the session: save `ssh -p 2222 intern@127.0.0.1 whoami`
+     output to ~/kali-class-work/sec-wk10/initial-shell.txt
+     (expect: intern)
+  4. Stamp: kali-class stamp sec-wk10 initial-shell
+hints:
+  - "ssh -p 2222 intern@127.0.0.1 — the container maps 2222 on localhost to 22."
+  - "Non-interactive proof: sshpass -p intern123 ssh -p 2222 intern@127.0.0.1 whoami > ~/kali-class-work/sec-wk10/initial-shell.txt"
+verify:
+  script: "01-initial-shell.verify.sh"
+  timeout: 60
+on_success: "A foothold with intern privileges. Now we climb."

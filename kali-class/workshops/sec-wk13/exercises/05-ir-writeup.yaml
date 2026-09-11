@@ -1,0 +1,20 @@
+id: "05"
+title: "The incident write-up (capstone)"
+prompt: |
+  IR without documentation didn't happen. Write the report.
+
+  Use the course write-up template format (Name/Date/Lab, Issue Summary,
+  Evidence, Commands Used, Actions Taken, Outcome) for ONE of the four
+  incidents you just worked (your choice — pick the one you understand
+  best).
+
+  1. Write it to ~/kali-class-work/sec-wk13/incident-writeup.txt
+     (aim for 10+ lines: every template section filled)
+  2. Stamp: kali-class stamp sec-wk13 ir-writeup
+hints:
+  - "Template: Issue Summary → Evidence (paste log/stat output) → Commands Used → Actions Taken → Outcome."
+  - "Write it like your boss will read it: clear, factual, no fluff."
+verify:
+  script: "05-ir-writeup.verify.sh"
+  timeout: 30
+on_success: "A complete incident write-up. This is the artifact managers see."

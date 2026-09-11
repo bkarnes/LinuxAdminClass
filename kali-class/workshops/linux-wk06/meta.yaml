@@ -1,0 +1,5 @@
+title: "Processes and Resource Monitoring"
+summary: "See what's running, prioritize it, stop it, and track memory and disk usage."
+week: 6
+phase: "linux-fundamentals"
+deps: ["linux-wk05"]

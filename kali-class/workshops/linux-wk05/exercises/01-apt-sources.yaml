@@ -1,0 +1,18 @@
+id: "01"
+title: "Know your sources"
+prompt: |
+  apt only installs what your configured repositories say exists.
+
+  1. List your configured apt sources into ~/apt-sources.txt
+     (hint: the command that lists sources starts with apt and ends
+     with the word 'sources').
+  2. Also append the distro and codename from /etc/os-release to the same
+     file (grep the lines for ID= and VERSION_CODENAME=).
+hints:
+  - "The modern command is: apt sources — try 'apt sources' and read what apt says."
+  - "Alternatively list every repo line directly: grep -rh ^deb /etc/apt/ > ~/apt-sources.txt"
+  - "For the distro lines: grep -E '^(ID|VERSION_CODENAME)=' /etc/os-release >> ~/apt-sources.txt"
+verify:
+  script: "01-apt-sources.verify.sh"
+  timeout: 15
+on_success: "You know where packages come from: your configured sources."

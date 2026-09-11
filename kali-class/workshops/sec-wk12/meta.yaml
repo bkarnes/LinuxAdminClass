@@ -1,0 +1,5 @@
+title: "Metasploit Basics"
+summary: "msfconsole workflow: search, configure, exploit the vsftpd backdoor, and post-exploit."
+week: 12
+phase: "cyber-security"
+deps: ["sec-wk11"]

@@ -1,0 +1,23 @@
+id: "01"
+title: "IR Triage: the brute-force incident"
+prompt: |
+  A web server is getting hammered. The evidence is in a container.
+
+  1. Build the incident images (once): kali-class setup-incidents
+  2. Launch: docker run -d --name linux-ir-authfail linux-ir-authfail:1.0
+  3. Investigate inside it:
+     docker exec linux-ir-authfail cat /var/log/auth.log
+  4. Answer three questions in
+     ~/kali-class-work/sec-wk13/authfail-findings.txt (one per line):
+       - the suspicious source IP
+       - the number of failed attempts from that IP
+       - the compromised-or-attempted username
+  5. Stamp: kali-class stamp sec-wk13 ir-authfail
+hints:
+  - "grep 'Failed password' /var/log/auth.log shows the pattern; pipe to awk to pull the IP."
+  - "Count with: grep 'Failed password' /var/log/auth.log | wc -l"
+  - "One IP repeats over and over — 10.10.10.5 — and every line names the same user."
+verify:
+  script: "01-ir-authfail.verify.sh"
+  timeout: 30
+on_success: "Triage: WHO (IP), HOW MANY (count), WHICH ACCOUNT. Report written."

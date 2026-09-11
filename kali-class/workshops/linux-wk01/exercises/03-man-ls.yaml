@@ -1,0 +1,19 @@
+id: "03"
+title: "RTFM — the man pages"
+prompt: |
+  When you don't know how a command works, the manual is one keystroke away.
+
+  Look up the manual page for the ls command, then tell me one thing you
+  found: use ls with the option that lists entries in long format, showing
+  permissions, owner, and size.
+
+  Run it on /etc and save the output to a file called etc-listing.txt in
+  your home directory.
+hints:
+  - "Read the manual with: man ls. Look for the option described as 'use a long listing format'."
+  - "The long-format flag is -l (that's a lowercase L, not a one)."
+  - "Capture output to a file with the > redirect: ls -l /etc > ~/etc-listing.txt"
+verify:
+  script: "03-man-ls.verify.sh"
+  timeout: 10
+on_success: "man + redirection — now you can teach yourself anything."

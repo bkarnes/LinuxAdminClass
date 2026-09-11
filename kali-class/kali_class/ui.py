@@ -1,0 +1,74 @@
+import os
+import re
+
+RESET = "\033[0m"
+GREEN = "\033[1;32m"
+RED = "\033[1;31m"
+BLUE = "\033[1;34m"
+YELLOW = "\033[1;33m"
+CYAN = "\033[1;36m"
+
+_NO_COLOR = bool(os.environ.get("NO_COLOR"))
+
+
+def _c(color: str, text: str) -> str:
+    if _NO_COLOR or not _supports_color():
+        return text
+    return f"{color}{text}{RESET}"
+
+
+def _supports_color() -> bool:
+    return hasattr(sys_stdout(), "isatty") and sys_stdout().isatty()
+
+
+def sys_stdout():
+    import sys
+
+    return sys.stdout
+
+
+def success(text: str) -> str:
+    return _c(GREEN, text)
+
+
+def failure(text: str) -> str:
+    return _c(RED, text)
+
+
+def info(text: str) -> str:
+    return _c(BLUE, text)
+
+
+def warn(text: str) -> str:
+    return _c(YELLOW, text)
+
+
+def accent(text: str) -> str:
+    return _c(CYAN, text)
+
+
+def checkmark() -> str:
+    return success("✓")
+
+
+def circle() -> str:
+    return warn("○")
+
+
+BANNER = r"""
+   __  __        _ __    __      __
+  / / / /  ___ _(_) /_  / /___ _/ /____  _____
+ / / / /  / _ `/ / __/ / // _ `/ __/ _ \/ ___/
+/ /_/ /  /_,_/ /_/   /_/ \_,_/\__/\___/_/
+"""
+
+
+def print_banner(class_id: str) -> None:
+    print(accent(BANNER))
+    print(info(f" {class_id} — Interactive Labs"))
+    print()
+
+
+def slugify(text: str) -> str:
+    slug = re.sub(r"[^a-z0-9]+", "-", text.lower()).strip("-")
+    return slug
