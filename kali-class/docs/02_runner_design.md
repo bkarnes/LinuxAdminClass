@@ -94,6 +94,12 @@ Phase 1 ships this machinery; Phase 2 exercises begin using it in Week 4
 fractions and a numbered picker. `--list` prints the same without entering
 the menu (useful for scripting and screenshots).
 
+The menu is the **home screen and loops**: finishing a workshop (or pressing
+`q`/Enter inside one) returns to the menu with fresh progress; `Enter` at
+the menu re-renders it; `q` exits. Direct invocation (`kali-class
+linux-wk02`) also lands in the menu when the session ends, so the
+completion screen's "back to main menu" promise holds everywhere.
+
 ## Error handling
 
 - Unknown workshop id → friendly error listing valid ids.

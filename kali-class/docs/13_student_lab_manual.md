@@ -31,13 +31,14 @@ Inside a workshop:
 | **h** | next hint (they're fine to use — they're counted, not penalized harshly) |
 | **s** | skip (come back later) |
 | **l** | list all exercises |
-| **q** | leave |
+| **q** | back to the main menu (the menu is home; `q` at the *menu* exits) |
 
 You do the real work in **your own terminal**, then switch back and press
 **v**. Green ✓ = done; the runner advances automatically.
 
-Finished all 5? 🎉 — run `kali-class export` and upload the dated file to
-the LMS. That's your weekly submission.
+Finished all 5? 🎉 — press **Enter** to return to the menu, then run
+`kali-class export` and upload the dated file to the LMS. That's your
+weekly submission.
 
 ## 3. Where things live on YOUR vm
 

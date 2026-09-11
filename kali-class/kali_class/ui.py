@@ -56,10 +56,12 @@ def circle() -> str:
 
 
 BANNER = r"""
-   __  __        _ __    __      __
-  / / / /  ___ _(_) /_  / /___ _/ /____  _____
- / / / /  / _ `/ / __/ / // _ `/ __/ _ \/ ___/
-/ /_/ /  /_,_/ /_/   /_/ \_,_/\__/\___/_/
+ _  __       _  _    _____  _
+| |/ /      | |(_)  / ____|| |
+| ' /  __ _ | | _  | |     | |  __ _  ___  ___
+|  <  / _` || || | | |     | | / _` |/ __|/ __|
+| . \| (_| || || | | |____ | || (_| |\__ \\__ \
+|_|\_\\__,_||_||_|  \_____||_| \__,_||___/|___/
 """
 
 
@@ -67,6 +69,14 @@ def print_banner(class_id: str) -> None:
     print(accent(BANNER))
     print(info(f" {class_id} — Interactive Labs"))
     print()
+
+
+def safe_input(prompt: str) -> str:
+    """input() that treats EOF (Ctrl+D) as 'q' so no traceback ever hits the student."""
+    try:
+        return input(prompt)
+    except EOFError:
+        return "q"
 
 
 def slugify(text: str) -> str:

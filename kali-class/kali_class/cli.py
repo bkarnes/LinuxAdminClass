@@ -99,33 +99,40 @@ def main() -> int:
             print(ui.failure(f" {exc}"))
             return 1
         run_workshop(workshop, Progress.load(), identity)
-        return 0
+        # Option A: direct invocation ends in the menu too — the completion
+        # screen's "back to main menu" promise is kept everywhere.
+        return main_menu(identity)
 
     return main_menu(identity)
 
 
 def main_menu(identity) -> int:
-    ui.print_banner(CLASS_ID)
-    print(f" Welcome back, {identity.name.split()[0]}. Here's where you stand:")
-    progress = Progress.load()
-    _print_all_workshops(progress, quiet_banner=True)
+    """The home screen. Loops: number → run workshop → back to menu;
+    Enter → refresh; q → quit."""
+    while True:
+        ui.print_banner(CLASS_ID)
+        print(f" Welcome back, {identity.name.split()[0]}. Here's where you stand:")
+        progress = Progress.load()
+        _print_all_workshops(progress, quiet_banner=True)
 
-    print(ui.info("\n   Pick a workshop by number, or (q)uit:"))
-    choice = input("   > ").strip().lower()
-    if choice in ("q", "quit", ""):
-        print(" Have a nice day.")
-        return 0
+        print(ui.info("\n   Pick a workshop by number, (Enter) to refresh, or (q)uit:"))
+        choice = ui.safe_input("   > ").strip().lower()
+        if choice in ("q", "quit"):
+            print(" Have a nice day.")
+            return 0
+        if not choice:
+            continue
 
-    workshops = list_workshops()
-    try:
-        idx = int(choice) - 1
-        workshop = workshops[idx]
-    except (ValueError, IndexError):
-        print(ui.failure(" Unrecognized choice."))
-        return 1
+        workshops = list_workshops()
+        try:
+            idx = int(choice) - 1
+            workshop = workshops[idx]
+        except (ValueError, IndexError):
+            print(ui.failure(" Unrecognized choice."))
+            continue
 
-    run_workshop(workshop, progress, identity)
-    return 0
+        run_workshop(workshop, progress, identity)
+        # loop: fresh banner + progress on return
 
 
 def cmd_setup_bhb(identity) -> int:

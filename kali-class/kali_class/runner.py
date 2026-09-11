@@ -2,6 +2,7 @@ import json
 import sys
 from pathlib import Path
 
+from . import CLASS_ID as CLASS_BANNER_CLASS_ID
 from . import anti_cheat, paths, ui, verifier
 from .progress import Progress
 from .workshop import Exercise, Workshop
@@ -12,6 +13,8 @@ def start(workshop: Workshop, progress: Progress, identity=None) -> None:
     if not exercises:
         print(ui.warn(f"Workshop {workshop.id} has no exercises yet."))
         return
+
+    ui.print_banner(CLASS_BANNER_CLASS_ID)
 
     if identity:
         anti_cheat.ensure_seed_files(
@@ -26,7 +29,7 @@ def start(workshop: Workshop, progress: Progress, identity=None) -> None:
             print(ui.success(f"\n 🎉 You have completed every exercise in {workshop.id}!"))
             _print_menu(workshop, progress, show_hint=True)
             cmd = _prompt_command()
-            if cmd == "reset":
+            if cmd in ("r", "reset"):
                 _reset(workshop, progress)
                 continue
             break
@@ -40,7 +43,7 @@ def start(workshop: Workshop, progress: Progress, identity=None) -> None:
         print(ui.info("   Type your commands in your own terminal, then come back here."))
         print(ui.info("   (v)erify   (h)int   (s)kip   (l)ist   (q)uit"))
 
-        cmd = input("\n   > ").strip().lower()
+        cmd = ui.safe_input("\n   > ").strip().lower()
         if cmd in ("v", "verify"):
             result = verifier.run(workshop, current)
             verifier.report(result)
@@ -90,7 +93,7 @@ def _print_menu(workshop: Workshop, progress: Progress, show_hint: bool = False)
 
 
 def _reset(workshop: Workshop, progress: Progress) -> None:
-    answer = input(ui.warn(f" Reset ALL progress for {workshop.id}? (y/N) ")).strip().lower()
+    answer = ui.safe_input(ui.warn(f" Reset ALL progress for {workshop.id}? (y/N) ")).strip().lower()
     if answer == "y":
         progress.reset_workshop(workshop.id)
         progress.save()
@@ -99,7 +102,7 @@ def _reset(workshop: Workshop, progress: Progress) -> None:
 
 def _prompt_command() -> str:
     print(ui.info("\n   (r)eset progress   (Enter/q) back to main menu"))
-    return input("   > ").strip().lower()
+    return ui.safe_input("   > ").strip().lower()
 
 
 def _seed_specs(workshop: Workshop, identity) -> dict[str, str]:
