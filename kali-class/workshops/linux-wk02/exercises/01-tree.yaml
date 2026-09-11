@@ -3,18 +3,19 @@ title: "Build a filing cabinet"
 prompt: |
   Admins live and die by tidy directory trees.
 
-  Build this structure inside your home directory (exactly):
+  Use the practice directory you created last week. Build this
+  structure inside it (exactly):
 
-      ~/company/
+      ~/practice/company/
         docs/
         photos/
         reports/2026/
 
-  Then create an empty file: ~/company/docs/notes.txt
+  Then create an empty file: ~/practice/company/docs/notes.txt
 hints:
   - "mkdir makes one directory at a time, but -p lets you nest them in one shot."
-  - "mkdir -p ~/company/reports/2026 creates everything missing along the way."
-  - "touch ~/company/docs/notes.txt"
+  - "mkdir -p ~/practice/company/reports/2026 creates everything missing along the way."
+  - "touch ~/practice/company/docs/notes.txt"
 verify:
   script: "01-tree.verify.sh"
   timeout: 10

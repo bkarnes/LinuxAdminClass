@@ -4,15 +4,20 @@ prompt: |
   Log files and config files are usually huge. Nobody cats a 2-million-line
   file into their terminal on purpose.
 
-  Using the file /var/log/syslog (Kali has one after setup_vm.sh option 2 —
-  if yours is missing, create test data first: seq 1 1000 > ~/biglog.txt
-  and use THAT file for this exercise):
+  First, make yourself a big test file inside your practice directory:
 
-  1. Show only the FIRST 5 lines, saving them to ~/head-out.txt
-  2. Show only the LAST 5 lines, saving them to ~/tail-out.txt
+      seq 1 1000 > ~/practice/biglog.txt
+
+  Then:
+
+  1. Show only the FIRST 5 lines, saving them to
+     ~/practice/head-out.txt
+  2. Show only the LAST 5 lines, saving them to
+     ~/practice/tail-out.txt
 hints:
-  - "head shows the start: head -n 5 <file> > ~/head-out.txt"
-  - "tail shows the end: tail -n 5 <file> > ~/tail-out.txt"
+  - "head shows the start: head -n 5 ~/practice/biglog.txt > ~/practice/head-out.txt"
+  - "tail shows the end: tail -n 5 ~/practice/biglog.txt > ~/practice/tail-out.txt"
+  - "Keep both output files in ~/practice with the big file — everything for this lab lives in one place."
 verify:
   script: "03-head-tail.verify.sh"
   timeout: 10

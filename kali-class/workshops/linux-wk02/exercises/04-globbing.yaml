@@ -3,16 +3,16 @@ title: "Wildcards — batch rename the lazy way"
 prompt: |
   Globbing saves typing. Time to use it.
 
-  Create three files at once in ~/company/reports:
+  Create three files at once in ~/practice/company/reports:
 
-      touch ~/company/reports/q1.txt ~/company/reports/q2.txt ~/company/reports/q3.txt
-      # (or better: brace expansion, touch ~/company/reports/q{1,2,3}.txt)
+      touch ~/practice/company/reports/q1.txt ~/practice/company/reports/q2.txt ~/practice/company/reports/q3.txt
+      # (or better: brace expansion, touch ~/practice/company/reports/q{1,2,3}.txt)
 
   Then, using ONE command with a wildcard, copy all three q*.txt files into
-  ~/company/reports/2026/.
+  ~/practice/company/reports/2026/.
 hints:
-  - "The * wildcard means 'anything here': cp ~/company/reports/q*.txt <destination>"
-  - "Destination: ~/company/reports/2026/"
+  - "The * wildcard means 'anything here': cp ~/practice/company/reports/q*.txt <destination>"
+  - "Destination: ~/practice/company/reports/2026/"
 verify:
   script: "04-globbing.verify.sh"
   timeout: 10

@@ -36,8 +36,8 @@ glob across many files, locate anything with `find`.
 | 4 | Wildcards | `*`, brace expansion, batch copy | 3-file glob result |
 | 5 | find scavenger hunt | `find -name`, per-student seed | **token check (anti-cheat)** |
 
-Exercise 3 accepts either `/var/log/syslog` or a generated `~/biglog.txt`
-so the lab works even on a fresh VM.
+Exercise 3 generates its own test data (`~/practice/biglog.txt`, 1000
+lines) so the lab works identically on any VM.
 
 ---
 

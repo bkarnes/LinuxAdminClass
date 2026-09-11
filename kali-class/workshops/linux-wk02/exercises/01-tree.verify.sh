@@ -1,5 +1,5 @@
 #!/bin/bash
-# Verify: the ~/company tree exists exactly as specified.
+# Verify: the ~/practice/company tree exists exactly as specified.
 
 need_dir() {
     if [ ! -d "$1" ]; then
@@ -8,14 +8,14 @@ need_dir() {
     fi
 }
 
-need_dir "$HOME/company"
-need_dir "$HOME/company/docs"
-need_dir "$HOME/company/photos"
-need_dir "$HOME/company/reports"
-need_dir "$HOME/company/reports/2026"
+need_dir "$HOME/practice/company"
+need_dir "$HOME/practice/company/docs"
+need_dir "$HOME/practice/company/photos"
+need_dir "$HOME/practice/company/reports"
+need_dir "$HOME/practice/company/reports/2026"
 
-if [ ! -f "$HOME/company/docs/notes.txt" ]; then
-    echo "~/company/docs/notes.txt is missing." >&2
+if [ ! -f "$HOME/practice/company/docs/notes.txt" ]; then
+    echo "~/practice/company/docs/notes.txt is missing." >&2
     exit 1
 fi
 

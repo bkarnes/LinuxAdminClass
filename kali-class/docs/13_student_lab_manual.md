@@ -70,8 +70,9 @@ exercises appear instantly (editable install). No reinstall needed.
 ## 5. Week-by-week survival notes
 
 ### Weeks 1–7 (fundamentals)
-- **wk02 ex03:** if `/var/log/syslog` is missing, generate `~/biglog.txt`
-  first (`seq 1 1000 > ~/biglog.txt`) and use that.
+- **wk02 ex03:** generate the test file first (`seq 1 1000 >
+  ~/practice/biglog.txt`) and keep head/tail output in `~/practice` too —
+  everything for the lab lives in one directory.
 - **wk03 ex04–05, wk07 ex02–03:** need `sudo` — your password is asked, that's
   normal.
 - **wk04 ex05:** the runner plants seed files FOR you — don't recreate them

@@ -3,16 +3,17 @@ title: "Copy, move, rename — without losing anything"
 prompt: |
   Three core file operations:
 
-  1. Copy ~/company/docs/notes.txt to ~/company/docs/notes-backup.txt
-  2. Move notes-backup.txt into ~/company/reports/ (it should no longer
-     exist in docs/)
+  1. Copy ~/practice/company/docs/notes.txt to
+     ~/practice/company/docs/notes-backup.txt
+  2. Move notes-backup.txt into ~/practice/company/reports/ (it should no
+     longer exist in docs/)
   3. Rename it there to 2026-notes.txt
 
   One command does each: cp, mv (twice).
 hints:
   - "Copy with: cp <source> <destination>"
   - "Move AND rename with the same tool: mv <source> <new-place-or-name>"
-  - "mv ~/company/docs/notes-backup.txt ~/company/reports/2026-notes.txt does both jobs at once."
+  - "mv ~/practice/company/docs/notes-backup.txt ~/practice/company/reports/2026-notes.txt does both jobs at once."
 verify:
   script: "02-cp-mv.verify.sh"
   timeout: 10
